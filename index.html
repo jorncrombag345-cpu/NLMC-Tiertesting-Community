@@ -1,4 +1,4 @@
-```html id="mx9ultra"
+```html id="fixedv2"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -29,56 +29,45 @@ radial-gradient(circle at top,#111827,#05070d 70%);
 
 color:white;
 
-overflow-x:hidden;
-
 min-height:100vh;
+
+overflow-x:hidden;
 }
 
 /* BG */
 
-.bg{
+.bg1,.bg2{
+
 position:fixed;
-inset:0;
-overflow:hidden;
+
+width:700px;
+height:700px;
+
+border-radius:50%;
+
+filter:blur(180px);
+
 z-index:-1;
 }
 
-.circle1{
-
-position:absolute;
-
-width:600px;
-height:600px;
+.bg1{
 
 background:#00ff88;
 
-filter:blur(180px);
+top:-300px;
+left:-300px;
 
 opacity:0.08;
-
-top:-250px;
-left:-250px;
-
-border-radius:50%;
 }
 
-.circle2{
+.bg2{
 
-position:absolute;
+background:#7b5cff;
 
-width:600px;
-height:600px;
-
-background:#6d5cff;
-
-filter:blur(180px);
+bottom:-300px;
+right:-300px;
 
 opacity:0.08;
-
-bottom:-250px;
-right:-250px;
-
-border-radius:50%;
 }
 
 /* NAV */
@@ -99,21 +88,21 @@ padding:30px 50px;
 font-size:40px;
 
 font-weight:900;
-
-letter-spacing:-2px;
 }
 
 .logo span{
+
 color:#00ff88;
 }
 
-.rightNav{
+.navRight{
 
 display:flex;
+
 gap:12px;
 }
 
-.rightNav input{
+.navRight input{
 
 background:rgba(255,255,255,0.05);
 
@@ -128,7 +117,7 @@ border-radius:18px;
 outline:none;
 }
 
-.rightNav button{
+.navRight button{
 
 border:none;
 
@@ -139,22 +128,13 @@ linear-gradient(
 #00d0ff
 );
 
-color:black;
-
-font-weight:800;
-
 padding:14px 24px;
 
 border-radius:18px;
 
+font-weight:800;
+
 cursor:pointer;
-
-transition:0.25s;
-}
-
-.rightNav button:hover{
-
-transform:translateY(-3px);
 }
 
 /* HERO */
@@ -168,11 +148,9 @@ margin-top:20px;
 
 .hero h1{
 
-font-size:110px;
+font-size:100px;
 
 font-weight:900;
-
-letter-spacing:-5px;
 
 background:
 linear-gradient(
@@ -190,9 +168,9 @@ white,
 
 margin-top:12px;
 
-font-size:20px;
-
 color:#8f98ab;
+
+font-size:20px;
 }
 
 /* SEARCH */
@@ -212,15 +190,13 @@ width:100%;
 
 padding:22px;
 
-border-radius:26px;
+border-radius:24px;
 
 background:
 rgba(255,255,255,0.05);
 
 border:
 1px solid rgba(255,255,255,0.08);
-
-backdrop-filter:blur(20px);
 
 color:white;
 
@@ -276,11 +252,17 @@ color:black;
 
 .adminPanel{
 
+display:none;
+
 width:95%;
 
 max-width:1300px;
 
 margin:auto;
+
+margin-bottom:35px;
+
+padding:25px;
 
 background:
 rgba(255,255,255,0.05);
@@ -288,15 +270,7 @@ rgba(255,255,255,0.05);
 border:
 1px solid rgba(255,255,255,0.08);
 
-backdrop-filter:blur(20px);
-
-padding:25px;
-
-border-radius:32px;
-
-margin-bottom:35px;
-
-display:none;
+border-radius:30px;
 }
 
 .adminGrid{
@@ -369,8 +343,6 @@ rgba(255,255,255,0.05);
 border:
 1px solid rgba(255,255,255,0.08);
 
-backdrop-filter:blur(20px);
-
 padding:26px;
 
 border-radius:34px;
@@ -391,9 +363,6 @@ transition:0.25s;
 transform:
 translateY(-5px)
 scale(1.01);
-
-box-shadow:
-0 20px 50px rgba(0,0,0,0.35);
 }
 
 .left{
@@ -480,16 +449,11 @@ text-align:right;
 
 .points h3{
 
-font-size:48px;
-
-color:#00ff88;
+font-size:46px;
 
 font-weight:900;
-}
 
-.points p{
-
-color:#8f98ab;
+color:#00ff88;
 }
 
 /* MODAL */
@@ -501,15 +465,15 @@ position:fixed;
 inset:0;
 
 background:
-rgba(0,0,0,0.75);
-
-backdrop-filter:blur(12px);
+rgba(0,0,0,0.7);
 
 display:none;
 
 justify-content:center;
 
 align-items:center;
+
+backdrop-filter:blur(10px);
 
 z-index:999;
 }
@@ -518,7 +482,7 @@ z-index:999;
 
 width:92%;
 
-max-width:720px;
+max-width:700px;
 
 background:
 linear-gradient(
@@ -527,12 +491,12 @@ linear-gradient(
 #0b0f18
 );
 
+padding:40px;
+
+border-radius:36px;
+
 border:
 1px solid rgba(255,255,255,0.08);
-
-border-radius:42px;
-
-padding:40px;
 }
 
 .modalTop{
@@ -575,20 +539,18 @@ margin-bottom:18px;
 
 .modalName{
 
-font-size:58px;
+font-size:56px;
 
 font-weight:900;
 }
 
 .totalPoints{
 
-margin-top:12px;
-
-color:#00ff88;
+margin-top:10px;
 
 font-size:22px;
 
-font-weight:700;
+color:#00ff88;
 }
 
 /* TIER GRID */
@@ -601,8 +563,6 @@ grid-template-columns:
 repeat(auto-fit,minmax(130px,1fr));
 
 gap:18px;
-
-margin-top:25px;
 }
 
 .tierCard{
@@ -610,36 +570,22 @@ margin-top:25px;
 background:
 rgba(255,255,255,0.04);
 
+padding:22px;
+
+border-radius:24px;
+
 border:
 1px solid rgba(255,255,255,0.08);
 
-padding:22px;
-
-border-radius:26px;
-
 text-align:center;
-
-transition:0.25s;
 }
 
-.tierCard:hover{
-
-transform:translateY(-4px);
-}
-
-.icon{
-
-font-size:28px;
-}
-
-.mode{
-
-margin-top:10px;
+.tierMode{
 
 color:#8f98ab;
 }
 
-.tier{
+.tierRank{
 
 margin-top:8px;
 
@@ -650,30 +596,11 @@ font-weight:900;
 color:#00ff88;
 }
 
-.pts{
+.tierPoints{
 
 margin-top:8px;
 
 color:#ffc107;
-}
-
-.deleteBtn{
-
-margin-top:14px;
-
-width:100%;
-
-border:none;
-
-background:#ff3b3b;
-
-color:white;
-
-padding:10px;
-
-border-radius:14px;
-
-cursor:pointer;
 }
 
 .closeBtn{
@@ -691,18 +618,14 @@ linear-gradient(
 #00d0ff
 );
 
-color:black;
-
-font-weight:900;
-
 padding:16px;
 
 border-radius:18px;
 
+font-weight:900;
+
 cursor:pointer;
 }
-
-/* MOBILE */
 
 @media(max-width:850px){
 
@@ -736,10 +659,8 @@ gap:20px;
 </head>
 <body>
 
-<div class="bg">
-<div class="circle1"></div>
-<div class="circle2"></div>
-</div>
+<div class="bg1"></div>
+<div class="bg2"></div>
 
 <div class="nav">
 
@@ -747,7 +668,7 @@ gap:20px;
 NL<span>TIERS</span>
 </div>
 
-<div class="rightNav">
+<div class="navRight">
 
 <input
 type="password"
@@ -794,16 +715,16 @@ placeholder="Player Name"
 
 <select id="gamemode">
 
-<option>⚔️ Sword</option>
-<option>🔨 Mace</option>
-<option>🏹 UHC</option>
-<option>🪓 Axe</option>
-<option>💨 Speed</option>
-<option>🛡️ Vanilla</option>
-<option>💎 DIA SMP</option>
-<option>🛒 Cart</option>
-<option>💣 Creeper</option>
-<option>🗡️ Spear</option>
+<option>Spear</option>
+<option>Mace</option>
+<option>Sword</option>
+<option>UHC</option>
+<option>Speed</option>
+<option>Axe</option>
+<option>Vanilla</option>
+<option>DIA SMP</option>
+<option>Cart</option>
+<option>Creeper</option>
 
 </select>
 
@@ -833,11 +754,16 @@ Add Tier
 <div class="filters">
 
 <button onclick="filterMode('ALL')">ALL</button>
-<button onclick="filterMode('🔨 Mace')">MACE</button>
-<button onclick="filterMode('⚔️ Sword')">SWORD</button>
-<button onclick="filterMode('🗡️ Spear')">SPEAR</button>
-<button onclick="filterMode('🏹 UHC')">UHC</button>
-<button onclick="filterMode('🪓 Axe')">AXE</button>
+<button onclick="filterMode('Mace')">MACE</button>
+<button onclick="filterMode('Sword')">SWORD</button>
+<button onclick="filterMode('Spear')">SPEAR</button>
+<button onclick="filterMode('UHC')">UHC</button>
+<button onclick="filterMode('Speed')">SPEED</button>
+<button onclick="filterMode('Axe')">AXE</button>
+<button onclick="filterMode('Vanilla')">VANILLA</button>
+<button onclick="filterMode('DIA SMP')">DIA SMP</button>
+<button onclick="filterMode('Cart')">CART</button>
+<button onclick="filterMode('Creeper')">CREEPER</button>
 
 </div>
 
@@ -907,16 +833,12 @@ let currentFilter = "ALL";
 
 let allData = [];
 
-let isAdmin = false;
-
 function login(){
 
 const pass =
 document.getElementById("password").value;
 
 if(pass === ADMIN_PASSWORD){
-
-isAdmin = true;
 
 document
 .getElementById("adminPanel")
@@ -974,10 +896,17 @@ document
 .value
 .toLowerCase();
 
-const { data } =
+const { data,error } =
 await supabaseClient
 .from("players")
 .select("*");
+
+if(error){
+
+console.log(error);
+
+return;
+}
 
 allData = data;
 
@@ -1097,19 +1026,15 @@ html += `
 
 <div class="tierCard">
 
-<div class="icon">
-${entry.gamemode.split(" ")[0]}
-</div>
-
-<div class="mode">
+<div class="tierMode">
 ${entry.gamemode}
 </div>
 
-<div class="tier">
+<div class="tierRank">
 ${entry.tier}
 </div>
 
-<div class="pts">
+<div class="tierPoints">
 ${tierRank[entry.tier]} pts
 </div>
 
