@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,219 +9,737 @@
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
 
-body{
+*{
 margin:0;
-font-family:Arial;
-background:#0b0f1a;
-color:white;
+padding:0;
+box-sizing:border-box;
 }
 
-.top{
-padding:20px;
+body{
+
+font-family:'Inter',sans-serif;
+
+background:
+radial-gradient(circle at top left,#00ff8820,transparent 30%),
+radial-gradient(circle at bottom right,#00d0ff20,transparent 30%),
+#050816;
+
+color:white;
+
+overflow-x:hidden;
+
+min-height:100vh;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#00ff88;
+border-radius:20px;
+}
+
+/* NAVBAR */
+
+.nav{
+
+width:100%;
+
+padding:25px 50px;
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
-background:#111827;
+
+position:sticky;
+
+top:0;
+
+backdrop-filter:blur(20px);
+
+background:rgba(5,8,22,0.7);
+
+z-index:100;
 }
 
 .logo{
-font-size:35px;
-font-weight:bold;
+
+font-size:50px;
+
+font-weight:900;
+
+letter-spacing:2px;
 }
 
 .logo span{
+
 color:#00ff88;
 }
 
-.login{
+.loginBox{
+
 display:flex;
-gap:10px;
+
+gap:12px;
 }
 
-input,select,button{
-padding:12px;
+.loginBox input{
+
+padding:15px 18px;
+
+background:rgba(255,255,255,0.06);
+
+border:1px solid rgba(255,255,255,0.08);
+
+border-radius:18px;
+
+color:white;
+
+outline:none;
+
+font-size:15px;
+}
+
+.loginBox button{
+
+padding:15px 22px;
+
 border:none;
-border-radius:10px;
-}
 
-button{
+border-radius:18px;
+
+font-weight:900;
+
 cursor:pointer;
-font-weight:bold;
+
+background:
+linear-gradient(
+135deg,
+#00ff88,
+#00d0ff
+);
+
+transition:0.25s;
 }
 
-.login button{
-background:#00ff88;
+.loginBox button:hover{
+
+transform:scale(1.05);
 }
 
-.search{
-padding:20px;
+/* HERO */
+
+.hero{
+
+padding:90px 20px 40px;
+
 text-align:center;
 }
 
-.search input{
-width:80%;
-max-width:600px;
-background:#1f2937;
-color:white;
+.hero h1{
+
+font-size:130px;
+
+font-weight:900;
+
+background:
+linear-gradient(
+90deg,
+white,
+#00ff88,
+#00d0ff
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
 }
 
+.hero p{
+
+margin-top:14px;
+
+font-size:24px;
+
+color:#98a4bb;
+}
+
+/* SEARCH */
+
+.searchArea{
+
+max-width:900px;
+
+margin:auto;
+
+padding:20px;
+}
+
+.searchArea input{
+
+width:100%;
+
+padding:24px;
+
+background:
+rgba(255,255,255,0.05);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+border-radius:24px;
+
+color:white;
+
+font-size:18px;
+
+outline:none;
+
+backdrop-filter:blur(10px);
+}
+
+/* FILTERS */
+
 .filters{
+
 display:flex;
+
 flex-wrap:wrap;
-gap:10px;
+
 justify-content:center;
-padding:10px;
+
+gap:14px;
+
+padding:25px;
 }
 
 .filters button{
-background:#1f2937;
+
+padding:14px 20px;
+
+border:none;
+
+border-radius:18px;
+
+background:
+rgba(255,255,255,0.05);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
 color:white;
+
+font-weight:800;
+
+cursor:pointer;
+
+transition:0.25s;
 }
 
 .filters button:hover{
+
 background:#00ff88;
+
 color:black;
+
+transform:translateY(-3px);
 }
+
+/* ADMIN */
 
 .admin{
+
 display:none;
-padding:20px;
-margin:20px;
+
+width:95%;
+
+max-width:1500px;
+
+margin:auto;
+
+padding:35px;
+
+margin-top:20px;
+
+margin-bottom:40px;
+
+background:
+rgba(255,255,255,0.05);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+border-radius:35px;
+
+backdrop-filter:blur(20px);
+}
+
+.admin h2{
+
+font-size:38px;
+
+margin-bottom:20px;
+}
+
+.adminGrid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:18px;
+}
+
+.adminGrid input,
+.adminGrid select{
+
+padding:18px;
+
+border-radius:18px;
+
 background:#111827;
-border-radius:20px;
-}
 
-.adminBox{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-}
+border:
+1px solid rgba(255,255,255,0.08);
 
-.admin input,
-.admin select{
-background:#1f2937;
 color:white;
+
+font-size:16px;
+
+outline:none;
 }
 
-.admin button{
-background:#00ff88;
+.adminGrid button{
+
+border:none;
+
+border-radius:18px;
+
+background:
+linear-gradient(
+135deg,
+#00ff88,
+#00d0ff
+);
+
+font-weight:900;
+
+cursor:pointer;
+
+font-size:16px;
 }
+
+/* LEADERBOARD */
 
 #leaderboard{
+
+width:100%;
+
+max-width:1600px;
+
+margin:auto;
+
 padding:20px;
+
 display:flex;
+
 flex-direction:column;
-gap:15px;
+
+gap:25px;
 }
 
+/* PLAYER CARD */
+
 .player{
-background:#111827;
-padding:20px;
-border-radius:20px;
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
+
+padding:30px;
+
+background:
+rgba(255,255,255,0.05);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+border-radius:36px;
+
+backdrop-filter:blur(15px);
+
 cursor:pointer;
+
+transition:0.3s;
 }
 
 .player:hover{
-transform:scale(1.01);
+
+transform:
+translateY(-6px)
+scale(1.01);
+
+border:
+1px solid rgba(0,255,136,0.5);
+
+box-shadow:
+0 0 50px rgba(0,255,136,0.15);
 }
 
-.left{
+.playerLeft{
+
 display:flex;
+
 align-items:center;
-gap:15px;
+
+gap:24px;
 }
 
 .rank{
-background:#00ff88;
-color:black;
-width:50px;
-height:50px;
+
+width:90px;
+height:90px;
+
+border-radius:28px;
+
+background:
+linear-gradient(
+135deg,
+#ffd54f,
+#ff9800
+);
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
-border-radius:12px;
-font-weight:bold;
+
+font-size:34px;
+
+font-weight:900;
+
+color:black;
 }
 
 .avatar{
-background:#1f2937;
-width:60px;
-height:60px;
-border-radius:15px;
+
+width:100px;
+height:100px;
+
+border-radius:30px;
+
+background:
+linear-gradient(
+135deg,
+#00ff88,
+#00d0ff
+);
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
-font-size:25px;
-font-weight:bold;
+
+font-size:45px;
+
+font-weight:900;
+
+color:black;
+}
+
+.playerInfo h2{
+
+font-size:42px;
+
+font-weight:900;
+}
+
+.playerInfo p{
+
+margin-top:6px;
+
+color:#98a4bb;
+
+font-size:18px;
 }
 
 .points{
-font-size:30px;
-font-weight:bold;
+
+text-align:right;
+}
+
+.points h3{
+
+font-size:60px;
+
+font-weight:900;
+
 color:#00ff88;
+}
+
+.points p{
+
+margin-top:8px;
+
+color:#98a4bb;
 }
 
 /* MODAL */
 
 .modal{
+
 position:fixed;
+
 inset:0;
-background:rgba(0,0,0,0.7);
+
+background:
+rgba(0,0,0,0.75);
+
 display:none;
+
 justify-content:center;
+
 align-items:center;
+
+backdrop-filter:blur(12px);
+
+z-index:999;
 }
 
 .modalContent{
-background:#111827;
-padding:30px;
-border-radius:25px;
-width:90%;
-max-width:700px;
+
+width:92%;
+
+max-width:900px;
+
+background:
+linear-gradient(
+145deg,
+#111827,
+#0b1020
+);
+
+padding:45px;
+
+border-radius:40px;
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+max-height:90vh;
+
+overflow:auto;
 }
 
-.modalTitle{
-font-size:40px;
-font-weight:bold;
+.modalTop{
+
+text-align:center;
+
+margin-bottom:35px;
+}
+
+.bigAvatar{
+
+width:170px;
+height:170px;
+
+border-radius:45px;
+
+background:
+linear-gradient(
+135deg,
+#00ff88,
+#00d0ff
+);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:70px;
+
+font-weight:900;
+
+color:black;
+
+margin:auto;
+
 margin-bottom:20px;
 }
 
+.modalName{
+
+font-size:75px;
+
+font-weight:900;
+}
+
+.totalPoints{
+
+margin-top:10px;
+
+font-size:26px;
+
+color:#00ff88;
+}
+
+.tiers{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(180px,1fr));
+
+gap:20px;
+}
+
 .tier{
-background:#1f2937;
-padding:15px;
-border-radius:15px;
-margin-bottom:12px;
+
+padding:24px;
+
+background:
+rgba(255,255,255,0.05);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+border-radius:28px;
+
+text-align:center;
+}
+
+.tier h3{
+
+font-size:22px;
+
+color:#98a4bb;
+}
+
+.tier h2{
+
+margin-top:10px;
+
+font-size:44px;
+
+font-weight:900;
+
+color:#00ff88;
+}
+
+.tier p{
+
+margin-top:10px;
+
+color:#ffc107;
+
+font-weight:700;
 }
 
 .deleteBtn{
-margin-top:10px;
-background:red;
-color:white;
+
+margin-top:14px;
+
 width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:14px;
+
+background:red;
+
+color:white;
+
+font-weight:900;
+
+cursor:pointer;
 }
 
 .closeBtn{
-margin-top:20px;
+
 width:100%;
-background:#00ff88;
+
+margin-top:28px;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:
+linear-gradient(
+135deg,
+#00ff88,
+#00d0ff
+);
+
+font-size:18px;
+
+font-weight:900;
+
+cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:70px;
+}
+
+.player{
+flex-direction:column;
+align-items:flex-start;
+gap:25px;
+}
+
+.points{
+text-align:left;
+}
+
+.nav{
+flex-direction:column;
+gap:18px;
+padding:20px;
+}
+
+.modalName{
+font-size:50px;
+}
+
 }
 
 </style>
+
 </head>
 <body>
 
-<div class="top">
+<div class="nav">
 
 <div class="logo">
 NL<span>TIERS</span>
 </div>
 
-<div class="login">
+<div class="loginBox">
 
 <input
 type="password"
@@ -229,18 +748,26 @@ placeholder="Admin code"
 >
 
 <button onclick="login()">
-Login
+LOGIN
 </button>
 
 </div>
 
 </div>
 
-<div class="search">
+<div class="hero">
+
+<h1>Leaderboard</h1>
+
+<p>Best Competitive Minecraft Players</p>
+
+</div>
+
+<div class="searchArea">
 
 <input
 type="text"
-id="search"
+id="searchInput"
 placeholder="Search player..."
 onkeyup="loadPlayers()"
 >
@@ -265,14 +792,14 @@ onkeyup="loadPlayers()"
 
 <div class="admin" id="adminPanel">
 
-<h2>Add Tier</h2>
+<h2>Admin Panel</h2>
 
-<div class="adminBox">
+<div class="adminGrid">
 
 <input
 type="text"
 id="playerName"
-placeholder="Player"
+placeholder="Player Name"
 >
 
 <select id="gamemode">
@@ -306,7 +833,7 @@ placeholder="Player"
 </select>
 
 <button onclick="addPlayer()">
-Add
+ADD TIER
 </button>
 
 </div>
@@ -321,11 +848,23 @@ Add
 
 <div class="modalContent">
 
-<div class="modalTitle" id="modalName">
+<div class="modalTop">
+
+<div class="bigAvatar" id="bigAvatar">
+A
+</div>
+
+<div class="modalName" id="modalName">
 Player
 </div>
 
-<div id="modalData"></div>
+<div class="totalPoints" id="totalPoints">
+0 Points
+</div>
+
+</div>
+
+<div class="tiers" id="modalTiers"></div>
 
 <button
 class="closeBtn"
@@ -358,7 +897,7 @@ let isAdmin = false;
 
 let currentFilter = "ALL";
 
-let allPlayers = [];
+let allData = [];
 
 const tierPoints = {
 
@@ -452,18 +991,18 @@ return;
 
 }
 
-allPlayers = data;
+allData = data;
 
 const board =
 document.getElementById("leaderboard");
 
 board.innerHTML = "";
 
-const grouped = {};
+let grouped = {};
 
 const search =
 document
-.getElementById("search")
+.getElementById("searchInput")
 .value
 .toLowerCase();
 
@@ -508,19 +1047,20 @@ class="player"
 onclick="openPlayer('${name}')"
 >
 
-<div class="left">
+<div class="playerLeft">
 
 <div class="rank">
 #${index+1}
 </div>
 
 <div class="avatar">
-${name.charAt(0)}
+${name.charAt(0).toUpperCase()}
 </div>
 
-<div>
+<div class="playerInfo">
 
 <h2>${name}</h2>
+
 <p>Competitive Player</p>
 
 </div>
@@ -528,7 +1068,11 @@ ${name.charAt(0)}
 </div>
 
 <div class="points">
-${points}
+
+<h3>${points}</h3>
+
+<p>Total Points</p>
+
 </div>
 
 </div>
@@ -549,22 +1093,35 @@ document
 .getElementById("modalName")
 .innerHTML = player;
 
+document
+.getElementById("bigAvatar")
+.innerHTML =
+player.charAt(0).toUpperCase();
+
 const stats =
-allPlayers.filter(
+allData.filter(
 x=>x.player===player
 );
+
+let total = 0;
 
 let html = "";
 
 stats.forEach(entry=>{
 
+total += tierPoints[entry.tier];
+
 html += `
 
 <div class="tier">
 
-<b>${entry.gamemode}</b><br>
-${entry.tier} -
+<h3>${entry.gamemode}</h3>
+
+<h2>${entry.tier}</h2>
+
+<p>
 ${tierPoints[entry.tier]} points
+</p>
 
 ${isAdmin ? `
 
@@ -584,7 +1141,12 @@ Delete Tier
 });
 
 document
-.getElementById("modalData")
+.getElementById("totalPoints")
+.innerHTML =
+total + " Total Points";
+
+document
+.getElementById("modalTiers")
 .innerHTML = html;
 
 }
@@ -592,7 +1154,7 @@ document
 async function deleteTier(id){
 
 const sure =
-confirm("Delete tier?");
+confirm("Delete this tier?");
 
 if(!sure) return;
 
