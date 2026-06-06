@@ -1,0 +1,376 @@
+```html id="7m2xka"
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NL Tier Testing</title>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#121212;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin:0;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+h1{
+    color:#55ff55;
+    font-size:42px;
+    text-shadow:2px 2px black;
+}
+
+.player{
+    background:#1e1e1e;
+    padding:15px;
+    margin:15px;
+    border-radius:12px;
+    border-left:8px solid #55ff55;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.rank{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.total{
+    color:#55ff55;
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+button,input,select{
+    padding:12px;
+    margin:5px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    background:#55ff55;
+    color:black;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.filterButtons{
+    margin-bottom:20px;
+}
+
+.filterButtons button{
+    background:#333;
+    color:white;
+}
+
+.filterButtons button:hover{
+    background:#55ff55;
+    color:black;
+}
+
+.adminBox{
+    background:#1a1a1a;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.mode{
+    margin:5px;
+    padding:8px;
+    background:#2a2a2a;
+    border-radius:8px;
+}
+
+.deleteBtn{
+    background:red;
+    color:white;
+    margin-left:10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>NL Tier Testing</h1>
+
+<div class="adminBox">
+
+<h2>Admin Login</h2>
+
+<input type="password" id="password" placeholder="Admin wachtwoord">
+
+<button onclick="login()">Login</button>
+
+<div id="adminPanel" style="display:none;">
+
+<h2>Speler toevoegen</h2>
+
+<input type="text" id="playerName" placeholder="Spelernaam">
+
+<select id="gamemode">
+
+<option>Spear</option>
+<option>Mace</option>
+<option>Sword</option>
+<option>UHC</option>
+<option>Speed</option>
+<option>Axe</option>
+<option>Vanilla</option>
+<option>DIA SMP</option>
+<option>Cart</option>
+<option>Creeper</option>
+
+</select>
+
+<select id="tier">
+
+<option>HT1</option>
+<option>LT1</option>
+<option>HT2</option>
+<option>LT2</option>
+<option>HT3</option>
+<option>LT3</option>
+<option>HT4</option>
+<option>LT4</option>
+<option>HT5</option>
+<option>LT5</option>
+
+</select>
+
+<button onclick="addPlayer()">Opslaan</button>
+
+</div>
+
+</div>
+
+<h2>Gamemode Filter</h2>
+
+<div class="filterButtons">
+
+<button onclick="filterMode('ALL')">All</button>
+<button onclick="filterMode('Spear')">Spear</button>
+<button onclick="filterMode('Mace')">Mace</button>
+<button onclick="filterMode('Sword')">Sword</button>
+<button onclick="filterMode('UHC')">UHC</button>
+<button onclick="filterMode('Speed')">Speed</button>
+<button onclick="filterMode('Axe')">Axe</button>
+<button onclick="filterMode('Vanilla')">Vanilla</button>
+<button onclick="filterMode('DIA SMP')">DIA SMP</button>
+<button onclick="filterMode('Cart')">Cart</button>
+<button onclick="filterMode('Creeper')">Creeper</button>
+
+</div>
+
+<h2>Leaderboard</h2>
+
+<div id="leaderboard"></div>
+
+</div>
+
+<script>
+
+const SUPABASE_URL = "https://mgtwbthpqinyxrcnglwt.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_kj1HG03vn4ZMqDgC8zWzhA_CRNDty9O";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+const ADMIN_PASSWORD = "5676";
+
+const tierRank = {
+
+    "LT5":1,
+    "HT5":2,
+    "LT4":5,
+    "HT4":10,
+    "LT3":12,
+    "HT3":15,
+    "LT2":18,
+    "HT2":20,
+    "LT1":25,
+    "HT1":30
+
+};
+
+let currentFilter = "ALL";
+
+let isAdmin = false;
+
+function login(){
+
+    const pass = document.getElementById("password").value;
+
+    if(pass === ADMIN_PASSWORD){
+
+        isAdmin = true;
+
+        document.getElementById("adminPanel").style.display = "block";
+
+        alert("Ingelogd!");
+
+        loadPlayers();
+
+    }else{
+
+        alert("Verkeerd wachtwoord");
+
+    }
+}
+
+function filterMode(mode){
+
+    currentFilter = mode;
+
+    loadPlayers();
+}
+
+async function addPlayer(){
+
+    const player = document.getElementById("playerName").value;
+
+    const gamemode = document.getElementById("gamemode").value;
+
+    const tier = document.getElementById("tier").value;
+
+    if(player === "") return;
+
+    await supabaseClient
+    .from("players")
+    .insert([
+        {
+            player: player,
+            gamemode: gamemode,
+            tier: tier
+        }
+    ]);
+
+    document.getElementById("playerName").value = "";
+
+    loadPlayers();
+}
+
+async function deleteTier(id){
+
+    await supabaseClient
+    .from("players")
+    .delete()
+    .eq("id", id);
+
+    loadPlayers();
+}
+
+async function loadPlayers(){
+
+    const { data, error } = await supabaseClient
+    .from("players")
+    .select("*");
+
+    if(error){
+
+        console.log(error);
+
+        return;
+    }
+
+    const board = document.getElementById("leaderboard");
+
+    board.innerHTML = "";
+
+    let groupedPlayers = {};
+
+    data.forEach(entry => {
+
+        if(currentFilter !== "ALL" && entry.gamemode !== currentFilter){
+            return;
+        }
+
+        if(!groupedPlayers[entry.player]){
+
+            groupedPlayers[entry.player] = {
+                total:0,
+                modes:[]
+            };
+        }
+
+        groupedPlayers[entry.player].total += tierRank[entry.tier];
+
+        groupedPlayers[entry.player].modes.push(
+            `
+            <div class="mode">
+
+                ${entry.gamemode} • ${entry.tier} • ${tierRank[entry.tier]} punten
+
+                ${
+                    isAdmin
+                    ?
+                    `<button class="deleteBtn" onclick="deleteTier(${entry.id})">❌</button>`
+                    :
+                    ""
+                }
+
+            </div>
+            `
+        );
+
+    });
+
+    let sortedPlayers = Object.entries(groupedPlayers);
+
+    sortedPlayers.sort((a,b) => b[1].total - a[1].total);
+
+    sortedPlayers.forEach(([player, info]) => {
+
+        board.innerHTML += `
+
+            <div class="player">
+
+                <div class="rank">
+                    ${player}
+                </div>
+
+                <div class="total">
+                    ⭐ ${info.total} punten totaal
+                </div>
+
+                <div>
+                    ${info.modes.join("")}
+                </div>
+
+            </div>
+
+        `;
+    });
+}
+
+loadPlayers();
+
+</script>
+
+</body>
+</html>
+```
