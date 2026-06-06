@@ -1,3 +1,4 @@
+```html id="premiumv5"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -23,52 +24,88 @@ body{
 
 font-family:'Inter',sans-serif;
 
-background:#070b14;
+background:
+linear-gradient(
+180deg,
+#060816,
+#0a1020,
+#060816
+);
 
 color:white;
 
-min-height:100vh;
-
 overflow-x:hidden;
+
+min-height:100vh;
 }
 
-/* BG */
+/* BACKGROUND */
 
-.bg1,.bg2{
+.bg{
 
 position:fixed;
+
+inset:0;
+
+overflow:hidden;
+
+z-index:-2;
+}
+
+.glow1{
+
+position:absolute;
 
 width:700px;
 height:700px;
 
+background:#00ff88;
+
 border-radius:50%;
 
-filter:blur(200px);
+filter:blur(220px);
+
+opacity:0.08;
+
+top:-300px;
+left:-250px;
+}
+
+.glow2{
+
+position:absolute;
+
+width:700px;
+height:700px;
+
+background:#7b5cff;
+
+border-radius:50%;
+
+filter:blur(220px);
+
+opacity:0.08;
+
+bottom:-300px;
+right:-250px;
+}
+
+.grid{
+
+position:fixed;
+
+inset:0;
+
+background-image:
+linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+background-size:60px 60px;
 
 z-index:-1;
 }
 
-.bg1{
-
-background:#00ff88;
-
-top:-300px;
-left:-300px;
-
-opacity:0.08;
-}
-
-.bg2{
-
-background:#7b5cff;
-
-bottom:-300px;
-right:-300px;
-
-opacity:0.08;
-}
-
-/* NAV */
+/* NAVBAR */
 
 .nav{
 
@@ -78,14 +115,16 @@ justify-content:space-between;
 
 align-items:center;
 
-padding:30px 50px;
+padding:35px 60px;
 }
 
 .logo{
 
-font-size:42px;
+font-size:46px;
 
 font-weight:900;
+
+letter-spacing:-3px;
 }
 
 .logo span{
@@ -97,27 +136,39 @@ color:#00ff88;
 
 display:flex;
 
-gap:12px;
+gap:14px;
 }
 
 .navRight input{
 
-background:rgba(255,255,255,0.05);
+background:
+rgba(255,255,255,0.05);
 
-border:1px solid rgba(255,255,255,0.08);
+border:
+1px solid rgba(255,255,255,0.08);
 
-padding:14px;
+padding:15px 18px;
 
-border-radius:16px;
+border-radius:18px;
 
 color:white;
 
 outline:none;
+
+width:170px;
 }
 
 .navRight button{
 
 border:none;
+
+padding:15px 24px;
+
+border-radius:18px;
+
+font-weight:800;
+
+cursor:pointer;
 
 background:
 linear-gradient(
@@ -126,13 +177,18 @@ linear-gradient(
 #00d0ff
 );
 
-padding:14px 22px;
+color:black;
 
-border-radius:16px;
+transition:0.25s;
+}
 
-font-weight:800;
+.navRight button:hover{
 
-cursor:pointer;
+transform:
+translateY(-4px);
+
+box-shadow:
+0 10px 30px rgba(0,255,136,0.3);
 }
 
 /* HERO */
@@ -141,14 +197,18 @@ cursor:pointer;
 
 text-align:center;
 
-margin-top:20px;
+margin-top:10px;
 }
 
 .hero h1{
 
-font-size:110px;
+font-size:120px;
 
 font-weight:900;
+
+letter-spacing:-6px;
+
+line-height:1;
 
 background:
 linear-gradient(
@@ -164,31 +224,33 @@ white,
 
 .hero p{
 
-margin-top:12px;
+margin-top:18px;
 
-font-size:20px;
+font-size:22px;
 
 color:#8d96aa;
 }
 
 /* SEARCH */
 
-.searchBox{
+.searchContainer{
 
 max-width:700px;
 
-margin:40px auto;
+margin:45px auto;
 
 padding:0 20px;
 }
 
-.searchBox input{
+.searchContainer input{
 
 width:100%;
 
-padding:22px;
+padding:24px;
 
-border-radius:24px;
+font-size:18px;
+
+border-radius:26px;
 
 background:
 rgba(255,255,255,0.05);
@@ -198,9 +260,20 @@ border:
 
 color:white;
 
-font-size:18px;
-
 outline:none;
+
+backdrop-filter:blur(20px);
+
+transition:0.25s;
+}
+
+.searchContainer input:focus{
+
+border:
+1px solid rgba(0,255,136,0.4);
+
+box-shadow:
+0 0 30px rgba(0,255,136,0.12);
 }
 
 /* FILTERS */
@@ -222,6 +295,12 @@ margin-bottom:40px;
 
 .filters button{
 
+border:none;
+
+padding:13px 18px;
+
+border-radius:18px;
+
 background:
 rgba(255,255,255,0.05);
 
@@ -229,10 +308,6 @@ border:
 1px solid rgba(255,255,255,0.08);
 
 color:white;
-
-padding:12px 18px;
-
-border-radius:16px;
 
 cursor:pointer;
 
@@ -246,9 +321,11 @@ transition:0.25s;
 background:#00ff88;
 
 color:black;
+
+transform:translateY(-3px);
 }
 
-/* ADMIN */
+/* ADMIN PANEL */
 
 .adminPanel{
 
@@ -256,13 +333,15 @@ display:none;
 
 width:95%;
 
-max-width:1300px;
+max-width:1350px;
 
 margin:auto;
 
-margin-bottom:35px;
+margin-bottom:40px;
 
-padding:25px;
+padding:28px;
+
+border-radius:36px;
 
 background:
 rgba(255,255,255,0.05);
@@ -270,7 +349,7 @@ rgba(255,255,255,0.05);
 border:
 1px solid rgba(255,255,255,0.08);
 
-border-radius:30px;
+backdrop-filter:blur(20px);
 }
 
 .adminGrid{
@@ -279,7 +358,7 @@ display:flex;
 
 flex-wrap:wrap;
 
-gap:15px;
+gap:14px;
 
 justify-content:center;
 }
@@ -287,65 +366,59 @@ justify-content:center;
 .adminGrid input,
 .adminGrid select{
 
-background:#10151f;
+padding:14px 16px;
+
+border-radius:18px;
+
+background:#111827;
 
 border:
 1px solid rgba(255,255,255,0.08);
 
 color:white;
 
-padding:14px;
-
-border-radius:16px;
+outline:none;
 }
 
 .adminGrid button{
 
 border:none;
 
+padding:14px 24px;
+
+border-radius:18px;
+
 background:#00ff88;
-
-padding:14px 22px;
-
-border-radius:16px;
 
 font-weight:800;
 
 cursor:pointer;
 }
 
-/* BOARD */
+/* LEADERBOARD */
 
 #leaderboard{
 
-width:100%;
-
-max-width:1450px;
+max-width:1500px;
 
 margin:auto;
 
-padding:0 20px 50px;
+padding:0 25px 60px;
 
 display:flex;
 
 flex-direction:column;
 
-gap:22px;
+gap:24px;
 }
 
-/* PLAYER */
+/* PLAYER CARD */
 
 .player{
 
-background:
-rgba(255,255,255,0.05);
+position:relative;
 
-border:
-1px solid rgba(255,255,255,0.08);
-
-padding:26px;
-
-border-radius:34px;
+overflow:hidden;
 
 display:flex;
 
@@ -353,16 +426,60 @@ justify-content:space-between;
 
 align-items:center;
 
+padding:28px;
+
+border-radius:38px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,0.07),
+rgba(255,255,255,0.03)
+);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+backdrop-filter:blur(18px);
+
 cursor:pointer;
 
-transition:0.25s;
+transition:0.3s;
+}
+
+.player::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+linear-gradient(
+90deg,
+rgba(0,255,136,0.08),
+transparent
+);
+
+opacity:0;
+
+transition:0.3s;
+}
+
+.player:hover::before{
+
+opacity:1;
 }
 
 .player:hover{
 
 transform:
-translateY(-5px)
+translateY(-6px)
 scale(1.01);
+
+box-shadow:
+0 20px 50px rgba(0,0,0,0.35);
 }
 
 .left{
@@ -371,15 +488,15 @@ display:flex;
 
 align-items:center;
 
-gap:20px;
+gap:22px;
 }
 
 .rank{
 
-width:75px;
-height:75px;
+width:82px;
+height:82px;
 
-border-radius:24px;
+border-radius:28px;
 
 background:
 linear-gradient(
@@ -394,7 +511,7 @@ justify-content:center;
 
 align-items:center;
 
-font-size:28px;
+font-size:30px;
 
 font-weight:900;
 
@@ -403,10 +520,10 @@ color:black;
 
 .avatar{
 
-width:85px;
-height:85px;
+width:92px;
+height:92px;
 
-border-radius:28px;
+border-radius:30px;
 
 background:
 linear-gradient(
@@ -421,7 +538,7 @@ justify-content:center;
 
 align-items:center;
 
-font-size:34px;
+font-size:36px;
 
 font-weight:900;
 
@@ -430,7 +547,7 @@ color:black;
 
 .playerInfo h2{
 
-font-size:36px;
+font-size:40px;
 
 font-weight:900;
 }
@@ -439,7 +556,7 @@ font-weight:900;
 
 margin-top:6px;
 
-color:#8f98ab;
+color:#8d96aa;
 }
 
 .points{
@@ -449,11 +566,16 @@ text-align:right;
 
 .points h3{
 
-font-size:46px;
+font-size:54px;
 
 font-weight:900;
 
 color:#00ff88;
+}
+
+.points p{
+
+color:#8d96aa;
 }
 
 /* MODAL */
@@ -465,7 +587,7 @@ position:fixed;
 inset:0;
 
 background:
-rgba(0,0,0,0.7);
+rgba(0,0,0,0.72);
 
 display:none;
 
@@ -473,7 +595,7 @@ justify-content:center;
 
 align-items:center;
 
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 
 z-index:999;
 }
@@ -482,36 +604,53 @@ z-index:999;
 
 width:92%;
 
-max-width:700px;
+max-width:760px;
+
+padding:42px;
+
+border-radius:42px;
 
 background:
 linear-gradient(
 145deg,
-#111827,
-#0b0f18
+#101827,
+#0a0f18
 );
-
-padding:40px;
-
-border-radius:36px;
 
 border:
 1px solid rgba(255,255,255,0.08);
+
+animation:popup 0.25s ease;
+}
+
+@keyframes popup{
+
+from{
+opacity:0;
+transform:scale(0.9);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
 }
 
 .modalTop{
 
 text-align:center;
 
-margin-bottom:30px;
+margin-bottom:34px;
 }
 
 .bigAvatar{
 
-width:130px;
-height:130px;
+width:140px;
+height:140px;
 
-border-radius:36px;
+border-radius:40px;
+
+margin:auto;
 
 background:
 linear-gradient(
@@ -520,15 +659,13 @@ linear-gradient(
 #00d0ff
 );
 
-margin:auto;
-
 display:flex;
 
 justify-content:center;
 
 align-items:center;
 
-font-size:54px;
+font-size:58px;
 
 font-weight:900;
 
@@ -539,7 +676,7 @@ margin-bottom:18px;
 
 .modalName{
 
-font-size:56px;
+font-size:64px;
 
 font-weight:900;
 }
@@ -548,55 +685,71 @@ font-weight:900;
 
 margin-top:10px;
 
-font-size:22px;
+font-size:24px;
 
 color:#00ff88;
+
+font-weight:700;
 }
 
-/* TIER GRID */
+/* STATS */
 
 .tierGrid{
 
 display:grid;
 
 grid-template-columns:
-repeat(auto-fit,minmax(130px,1fr));
+repeat(auto-fit,minmax(140px,1fr));
 
 gap:18px;
 }
 
 .tierCard{
 
+padding:24px;
+
+border-radius:28px;
+
 background:
 rgba(255,255,255,0.04);
-
-padding:22px;
-
-border-radius:24px;
 
 border:
 1px solid rgba(255,255,255,0.08);
 
 text-align:center;
+
+transition:0.25s;
 }
 
-.tierMode{
+.tierCard:hover{
 
-color:#8f98ab;
+transform:translateY(-4px);
 }
 
-.tierRank{
+.icon{
+
+font-size:34px;
+}
+
+.mode{
+
+margin-top:10px;
+
+color:#8d96aa;
+}
+
+.tier{
 
 margin-top:8px;
 
-font-size:30px;
+font-size:34px;
 
 font-weight:900;
 
 color:#00ff88;
 }
 
-.tierPoints{
+.pts{
 
 margin-top:8px;
 
@@ -607,9 +760,19 @@ color:#ffc107;
 
 width:100%;
 
-margin-top:30px;
+margin-top:34px;
 
 border:none;
+
+padding:18px;
+
+border-radius:22px;
+
+font-size:17px;
+
+font-weight:900;
+
+cursor:pointer;
 
 background:
 linear-gradient(
@@ -618,13 +781,36 @@ linear-gradient(
 #00d0ff
 );
 
-padding:16px;
+color:black;
+}
 
-border-radius:18px;
+/* MOBILE */
 
-font-weight:900;
+@media(max-width:850px){
 
-cursor:pointer;
+.hero h1{
+font-size:68px;
+}
+
+.player{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+}
+
+.points{
+text-align:left;
+}
+
+.nav{
+
+flex-direction:column;
+
+gap:20px;
+}
 }
 
 </style>
@@ -632,8 +818,14 @@ cursor:pointer;
 </head>
 <body>
 
-<div class="bg1"></div>
-<div class="bg2"></div>
+<div class="bg">
+
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+</div>
+
+<div class="grid"></div>
 
 <div class="nav">
 
@@ -665,7 +857,7 @@ Login
 
 </div>
 
-<div class="searchBox">
+<div class="searchContainer">
 
 <input
 type="text"
@@ -688,16 +880,16 @@ placeholder="Player Name"
 
 <select id="gamemode">
 
-<option>Mace</option>
-<option>Sword</option>
-<option>Spear</option>
-<option>UHC</option>
-<option>Axe</option>
-<option>Speed</option>
-<option>Vanilla</option>
-<option>DIA SMP</option>
-<option>Cart</option>
-<option>Creeper</option>
+<option>⚔️ Sword</option>
+<option>🔨 Mace</option>
+<option>🏹 UHC</option>
+<option>🪓 Axe</option>
+<option>💨 Speed</option>
+<option>🛡️ Vanilla</option>
+<option>💎 DIA SMP</option>
+<option>🛒 Cart</option>
+<option>💣 Creeper</option>
+<option>🗡️ Spear</option>
 
 </select>
 
@@ -727,16 +919,13 @@ Add Tier
 <div class="filters">
 
 <button onclick="filterMode('ALL')">ALL</button>
-<button onclick="filterMode('Mace')">MACE</button>
-<button onclick="filterMode('Sword')">SWORD</button>
-<button onclick="filterMode('Spear')">SPEAR</button>
-<button onclick="filterMode('UHC')">UHC</button>
-<button onclick="filterMode('Axe')">AXE</button>
-<button onclick="filterMode('Speed')">SPEED</button>
-<button onclick="filterMode('Vanilla')">VANILLA</button>
-<button onclick="filterMode('DIA SMP')">DIA SMP</button>
-<button onclick="filterMode('Cart')">CART</button>
-<button onclick="filterMode('Creeper')">CREEPER</button>
+<button onclick="filterMode('🔨 Mace')">MACE</button>
+<button onclick="filterMode('⚔️ Sword')">SWORD</button>
+<button onclick="filterMode('🗡️ Spear')">SPEAR</button>
+<button onclick="filterMode('🏹 UHC')">UHC</button>
+<button onclick="filterMode('🪓 Axe')">AXE</button>
+<button onclick="filterMode('💨 Speed')">SPEED</button>
+<button onclick="filterMode('🛡️ Vanilla')">VANILLA</button>
 
 </div>
 
@@ -843,8 +1032,6 @@ document.getElementById("gamemode").value;
 const tier =
 document.getElementById("tier").value;
 
-if(player === "") return;
-
 await supabaseClient
 .from("players")
 .insert([
@@ -854,10 +1041,6 @@ gamemode,
 tier
 }
 ]);
-
-document
-.getElementById("playerName")
-.value = "";
 
 loadPlayers();
 }
@@ -875,17 +1058,10 @@ document
 .value
 .toLowerCase();
 
-const { data,error } =
+const { data } =
 await supabaseClient
 .from("players")
 .select("*");
-
-if(error){
-
-console.log(error);
-
-return;
-}
 
 allData = data;
 
@@ -977,10 +1153,9 @@ ${getAvatar(player)}
 
 function openPlayer(player){
 
-const modal =
-document.getElementById("modal");
-
-modal.style.display = "flex";
+document
+.getElementById("modal")
+.style.display = "flex";
 
 document
 .getElementById("modalName")
@@ -988,10 +1163,13 @@ document
 
 document
 .getElementById("bigAvatar")
-.innerHTML = getAvatar(player);
+.innerHTML =
+getAvatar(player);
 
 const stats =
-allData.filter(x=>x.player===player);
+allData.filter(
+x=>x.player===player
+);
 
 let total = 0;
 
@@ -1005,15 +1183,19 @@ html += `
 
 <div class="tierCard">
 
-<div class="tierMode">
+<div class="icon">
+${entry.gamemode.split(" ")[0]}
+</div>
+
+<div class="mode">
 ${entry.gamemode}
 </div>
 
-<div class="tierRank">
+<div class="tier">
 ${entry.tier}
 </div>
 
-<div class="tierPoints">
+<div class="pts">
 ${tierRank[entry.tier]} pts
 </div>
 
@@ -1045,3 +1227,4 @@ loadPlayers();
 
 </body>
 </html>
+```
