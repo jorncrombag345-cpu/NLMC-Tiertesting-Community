@@ -1,4 +1,4 @@
-```html id="q7m4vn"
+```html id="f8x2vm"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -10,7 +10,7 @@
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -21,158 +21,313 @@
 }
 
 body{
+
     font-family:'Poppins',sans-serif;
-    background:#0d0d0d;
+
+    background:
+    radial-gradient(circle at top,#1b1b1b,#080808);
+
     color:white;
-    padding:30px;
+
     min-height:100vh;
+
+    padding:30px;
 }
 
 .container{
-    max-width:1200px;
+    max-width:1400px;
     margin:auto;
 }
 
-h1{
-    font-size:60px;
-    margin-bottom:30px;
+.title{
+
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.title h1{
+
+    font-size:70px;
+
     color:#55ff55;
+
     text-shadow:
     0 0 10px #55ff55,
-    0 0 20px #55ff55;
+    0 0 25px #55ff55,
+    0 0 50px rgba(85,255,85,0.5);
+
+    font-weight:800;
+}
+
+.title p{
+
+    color:#999;
+    margin-top:10px;
+    font-size:18px;
+}
+
+.glass{
+
+    background:rgba(20,20,20,0.75);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.6);
+
+    padding:25px;
+}
+
+.adminPanel{
+    margin-bottom:30px;
 }
 
 .topBar{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:15px;
+
     justify-content:center;
-    margin-bottom:25px;
 }
 
 input,select,button{
 
-    padding:14px;
+    padding:15px;
+
     border:none;
-    border-radius:12px;
+
+    border-radius:14px;
+
     font-size:16px;
-}
 
-input,select{
-    background:#1a1a1a;
-    color:white;
-}
-
-button{
-    background:#55ff55;
-    color:black;
-    font-weight:700;
-    cursor:pointer;
     transition:0.2s;
 }
 
+input,select{
+
+    background:#111;
+
+    color:white;
+
+    border:1px solid #2b2b2b;
+}
+
+input:focus,
+select:focus{
+
+    outline:none;
+
+    border:1px solid #55ff55;
+
+    box-shadow:
+    0 0 10px rgba(85,255,85,0.5);
+}
+
+button{
+
+    background:linear-gradient(135deg,#55ff55,#32d932);
+
+    color:black;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
 button:hover{
-    transform:scale(1.05);
+
+    transform:translateY(-2px) scale(1.03);
+
+    box-shadow:
+    0 0 15px rgba(85,255,85,0.5);
 }
 
 .search{
-    width:300px;
-    max-width:90%;
-}
 
-.adminPanel{
-
-    background:#151515;
-    border:1px solid #2a2a2a;
-    padding:25px;
-    border-radius:20px;
-    margin-bottom:30px;
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    width:350px;
+    max-width:95%;
 }
 
 .filterButtons{
-    margin-bottom:30px;
+
+    margin-top:25px;
+    margin-bottom:35px;
+    text-align:center;
 }
 
 .filterButtons button{
-    margin:5px;
-    background:#1f1f1f;
+
+    margin:6px;
+
+    background:#161616;
+
     color:white;
+
+    border:1px solid #2c2c2c;
 }
 
 .filterButtons button:hover{
+
     background:#55ff55;
     color:black;
 }
 
 #leaderboard{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:20px;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(350px,1fr));
+
+    gap:25px;
 }
 
 .player{
 
-    background:linear-gradient(145deg,#151515,#1e1e1e);
+    position:relative;
 
-    border:1px solid #2a2a2a;
+    overflow:hidden;
 
-    border-radius:20px;
+    border-radius:25px;
 
-    padding:20px;
+    padding:25px;
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(25,25,25,0.95),
+    rgba(15,15,15,0.95)
+    );
+
+    border:1px solid rgba(255,255,255,0.05);
 
     transition:0.3s;
 
     box-shadow:
-    0 0 10px rgba(0,0,0,0.5);
+    0 10px 25px rgba(0,0,0,0.5);
+}
 
+.player::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:
+    linear-gradient(90deg,#55ff55,#00ffcc);
 }
 
 .player:hover{
 
-    transform:translateY(-5px);
+    transform:
+    translateY(-8px)
+    scale(1.01);
 
     box-shadow:
-    0 0 15px rgba(85,255,85,0.4);
-
+    0 15px 35px rgba(85,255,85,0.25);
 }
 
 .rank{
 
-    font-size:32px;
-    font-weight:700;
+    font-size:34px;
+
+    font-weight:800;
+
     margin-bottom:10px;
+
+    color:white;
 }
 
 .total{
 
+    font-size:22px;
+
     color:#55ff55;
-    font-size:20px;
-    margin-bottom:15px;
+
+    margin-bottom:20px;
+
+    font-weight:600;
 }
 
 .mode{
 
-    background:#111;
+    background:
+    rgba(255,255,255,0.03);
 
-    padding:10px;
+    border:
+    1px solid rgba(255,255,255,0.04);
 
-    margin:8px 0;
+    padding:12px;
 
-    border-radius:10px;
+    margin:10px 0;
 
-    border-left:5px solid #55ff55;
+    border-radius:14px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    transition:0.2s;
+}
+
+.mode:hover{
+
+    background:
+    rgba(85,255,85,0.08);
+}
+
+.modeText{
+    text-align:left;
 }
 
 .deleteBtn{
+
     background:red;
+
     color:white;
-    margin-left:10px;
+
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    font-size:14px;
 }
 
-.loginTitle{
-    margin-bottom:15px;
-    font-size:24px;
+.deleteBtn:hover{
+
+    box-shadow:
+    0 0 12px rgba(255,0,0,0.5);
+}
+
+.medal{
+
+    font-size:28px;
+
+    margin-right:8px;
+}
+
+.subtitle{
+
+    text-align:center;
+
+    margin:25px 0;
+
+    color:#aaa;
 }
 
 </style>
@@ -182,27 +337,39 @@ button:hover{
 
 <div class="container">
 
+<div class="title">
+
 <h1>NL Tier Testing</h1>
 
-<div class="adminPanel">
-
-<div class="loginTitle">
-Admin Login
-</div>
-
-<div class="topBar">
-
-<input type="password" id="password" placeholder="Admin wachtwoord">
-
-<button onclick="login()">Login</button>
+<p>Minecraft Competitive Leaderboard</p>
 
 </div>
 
-<div id="adminBox" style="display:none;">
+<div class="glass adminPanel">
 
 <div class="topBar">
 
-<input type="text" id="playerName" placeholder="Spelernaam">
+<input
+type="password"
+id="password"
+placeholder="Admin wachtwoord"
+>
+
+<button onclick="login()">
+Login
+</button>
+
+</div>
+
+<div id="adminBox" style="display:none; margin-top:25px;">
+
+<div class="topBar">
+
+<input
+type="text"
+id="playerName"
+placeholder="Spelernaam"
+>
 
 <select id="gamemode">
 
@@ -234,12 +401,18 @@ Admin Login
 
 </select>
 
-<button onclick="addPlayer()">Toevoegen</button>
+<button onclick="addPlayer()">
+Toevoegen
+</button>
 
 </div>
 
 </div>
 
+</div>
+
+<div class="subtitle">
+Zoek spelers of filter gamemodes
 </div>
 
 <div class="topBar">
@@ -276,13 +449,16 @@ onkeyup="loadPlayers()"
 
 <script>
 
-const SUPABASE_URL = "https://mgtwbthpqinyxrcnglwt.supabase.co";
+const SUPABASE_URL =
+"https://mgtwbthpqinyxrcnglwt.supabase.co";
 
-const SUPABASE_KEY = "sb_publishable_kj1HG03vn4ZMqDgC8zWzhA_CRNDty9O";
+const SUPABASE_KEY =
+"sb_publishable_kj1HG03vn4ZMqDgC8zWzhA_CRNDty9O";
 
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 const ADMIN_PASSWORD = "5676";
@@ -308,13 +484,15 @@ let isAdmin = false;
 
 function login(){
 
-    const pass = document.getElementById("password").value;
+    const pass =
+    document.getElementById("password").value;
 
     if(pass === ADMIN_PASSWORD){
 
         isAdmin = true;
 
-        document.getElementById("adminBox").style.display = "block";
+        document.getElementById("adminBox")
+        .style.display = "block";
 
         alert("Ingelogd!");
 
@@ -323,7 +501,6 @@ function login(){
     }else{
 
         alert("Verkeerd wachtwoord");
-
     }
 }
 
@@ -336,11 +513,14 @@ function filterMode(mode){
 
 async function addPlayer(){
 
-    const player = document.getElementById("playerName").value;
+    const player =
+    document.getElementById("playerName").value;
 
-    const gamemode = document.getElementById("gamemode").value;
+    const gamemode =
+    document.getElementById("gamemode").value;
 
-    const tier = document.getElementById("tier").value;
+    const tier =
+    document.getElementById("tier").value;
 
     if(player === "") return;
 
@@ -354,7 +534,7 @@ async function addPlayer(){
         }
     ]);
 
-    document.getElementById("playerName").value = "";
+    document.getElementById("playerName").value="";
 
     loadPlayers();
 }
@@ -364,28 +544,32 @@ async function deleteTier(id){
     await supabaseClient
     .from("players")
     .delete()
-    .eq("id", id);
+    .eq("id",id);
 
     loadPlayers();
 }
 
 async function loadPlayers(){
 
-    const { data, error } = await supabaseClient
+    const { data,error } =
+    await supabaseClient
     .from("players")
     .select("*");
 
     if(error){
+
         console.log(error);
+
         return;
     }
 
-    const board = document.getElementById("leaderboard");
+    const board =
+    document.getElementById("leaderboard");
 
     board.innerHTML = "";
 
-    let search = document
-    .getElementById("searchInput")
+    let search =
+    document.getElementById("searchInput")
     .value
     .toLowerCase();
 
@@ -393,18 +577,25 @@ async function loadPlayers(){
 
     data.forEach(entry => {
 
-        if(currentFilter !== "ALL" &&
-           entry.gamemode !== currentFilter){
+        if(
+            currentFilter !== "ALL" &&
+            entry.gamemode !== currentFilter
+        ){
             return;
         }
 
-        if(!entry.player.toLowerCase().includes(search)){
+        if(
+            !entry.player
+            .toLowerCase()
+            .includes(search)
+        ){
             return;
         }
 
         if(!groupedPlayers[entry.player]){
 
             groupedPlayers[entry.player] = {
+
                 total:0,
                 modes:[]
             };
@@ -414,22 +605,31 @@ async function loadPlayers(){
         tierRank[entry.tier];
 
         groupedPlayers[entry.player].modes.push(
+
             `
             <div class="mode">
 
-                ${entry.gamemode}
-                •
-                ${entry.tier}
-                •
-                ${tierRank[entry.tier]} punten
+                <div class="modeText">
+
+                    ${entry.gamemode}
+                    •
+                    ${entry.tier}
+                    •
+                    ${tierRank[entry.tier]} punten
+
+                </div>
 
                 ${
                     isAdmin
                     ?
-                    `<button class="deleteBtn"
-                    onclick="deleteTier(${entry.id})">
+                    `
+                    <button
+                    class="deleteBtn"
+                    onclick="deleteTier(${entry.id})"
+                    >
                     ❌
-                    </button>`
+                    </button>
+                    `
                     :
                     ""
                 }
@@ -444,23 +644,35 @@ async function loadPlayers(){
     Object.entries(groupedPlayers);
 
     sortedPlayers.sort(
-        (a,b) => b[1].total - a[1].total
+        (a,b) =>
+        b[1].total - a[1].total
     );
 
-    sortedPlayers.forEach(([player,info],index) => {
+    sortedPlayers.forEach(([player,info],index)=>{
 
         let medal = "";
 
-        if(index === 0) medal = "🥇";
-        if(index === 1) medal = "🥈";
-        if(index === 2) medal = "🥉";
+        if(index === 0)
+        medal = "🥇";
+
+        if(index === 1)
+        medal = "🥈";
+
+        if(index === 2)
+        medal = "🥉";
 
         board.innerHTML += `
 
         <div class="player">
 
             <div class="rank">
-                ${medal} ${player}
+
+                <span class="medal">
+                ${medal}
+                </span>
+
+                ${player}
+
             </div>
 
             <div class="total">
