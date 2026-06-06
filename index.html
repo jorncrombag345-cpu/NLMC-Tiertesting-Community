@@ -1,4 +1,4 @@
-```html id="7m2xka"
+```html id="q7m4vn"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -10,74 +10,93 @@
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 
-body{
-    font-family:Arial,sans-serif;
-    background:#121212;
-    color:white;
-    text-align:center;
-    padding:20px;
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0d0d0d;
+    color:white;
+    padding:30px;
+    min-height:100vh;
 }
 
 .container{
-    max-width:1000px;
+    max-width:1200px;
     margin:auto;
 }
 
 h1{
+    font-size:60px;
+    margin-bottom:30px;
     color:#55ff55;
-    font-size:42px;
-    text-shadow:2px 2px black;
+    text-shadow:
+    0 0 10px #55ff55,
+    0 0 20px #55ff55;
 }
 
-.player{
-    background:#1e1e1e;
-    padding:15px;
-    margin:15px;
-    border-radius:12px;
-    border-left:8px solid #55ff55;
-    box-shadow:0 0 10px rgba(0,0,0,0.5);
+.topBar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
+    margin-bottom:25px;
 }
 
-.rank{
-    font-size:28px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
+input,select,button{
 
-.total{
-    color:#55ff55;
-    font-size:20px;
-    margin-bottom:10px;
-}
-
-button,input,select{
-    padding:12px;
-    margin:5px;
+    padding:14px;
     border:none;
-    border-radius:8px;
+    border-radius:12px;
     font-size:16px;
+}
+
+input,select{
+    background:#1a1a1a;
+    color:white;
 }
 
 button{
     background:#55ff55;
     color:black;
+    font-weight:700;
     cursor:pointer;
-    font-weight:bold;
+    transition:0.2s;
 }
 
 button:hover{
-    opacity:0.9;
+    transform:scale(1.05);
+}
+
+.search{
+    width:300px;
+    max-width:90%;
+}
+
+.adminPanel{
+
+    background:#151515;
+    border:1px solid #2a2a2a;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:30px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
 
 .filterButtons{
-    margin-bottom:20px;
+    margin-bottom:30px;
 }
 
 .filterButtons button{
-    background:#333;
+    margin:5px;
+    background:#1f1f1f;
     color:white;
 }
 
@@ -86,24 +105,74 @@ button:hover{
     color:black;
 }
 
-.adminBox{
-    background:#1a1a1a;
+#leaderboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:20px;
+}
+
+.player{
+
+    background:linear-gradient(145deg,#151515,#1e1e1e);
+
+    border:1px solid #2a2a2a;
+
+    border-radius:20px;
+
     padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 0 10px rgba(0,0,0,0.5);
+
+}
+
+.player:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 15px rgba(85,255,85,0.4);
+
+}
+
+.rank{
+
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.total{
+
+    color:#55ff55;
+    font-size:20px;
+    margin-bottom:15px;
 }
 
 .mode{
-    margin:5px;
-    padding:8px;
-    background:#2a2a2a;
-    border-radius:8px;
+
+    background:#111;
+
+    padding:10px;
+
+    margin:8px 0;
+
+    border-radius:10px;
+
+    border-left:5px solid #55ff55;
 }
 
 .deleteBtn{
     background:red;
     color:white;
     margin-left:10px;
+}
+
+.loginTitle{
+    margin-bottom:15px;
+    font-size:24px;
 }
 
 </style>
@@ -115,17 +184,23 @@ button:hover{
 
 <h1>NL Tier Testing</h1>
 
-<div class="adminBox">
+<div class="adminPanel">
 
-<h2>Admin Login</h2>
+<div class="loginTitle">
+Admin Login
+</div>
+
+<div class="topBar">
 
 <input type="password" id="password" placeholder="Admin wachtwoord">
 
 <button onclick="login()">Login</button>
 
-<div id="adminPanel" style="display:none;">
+</div>
 
-<h2>Speler toevoegen</h2>
+<div id="adminBox" style="display:none;">
+
+<div class="topBar">
 
 <input type="text" id="playerName" placeholder="Spelernaam">
 
@@ -159,13 +234,25 @@ button:hover{
 
 </select>
 
-<button onclick="addPlayer()">Opslaan</button>
+<button onclick="addPlayer()">Toevoegen</button>
 
 </div>
 
 </div>
 
-<h2>Gamemode Filter</h2>
+</div>
+
+<div class="topBar">
+
+<input
+type="text"
+id="searchInput"
+class="search"
+placeholder="Zoek speler..."
+onkeyup="loadPlayers()"
+>
+
+</div>
 
 <div class="filterButtons">
 
@@ -182,8 +269,6 @@ button:hover{
 <button onclick="filterMode('Creeper')">Creeper</button>
 
 </div>
-
-<h2>Leaderboard</h2>
 
 <div id="leaderboard"></div>
 
@@ -229,7 +314,7 @@ function login(){
 
         isAdmin = true;
 
-        document.getElementById("adminPanel").style.display = "block";
+        document.getElementById("adminBox").style.display = "block";
 
         alert("Ingelogd!");
 
@@ -263,9 +348,9 @@ async function addPlayer(){
     .from("players")
     .insert([
         {
-            player: player,
-            gamemode: gamemode,
-            tier: tier
+            player,
+            gamemode,
+            tier
         }
     ]);
 
@@ -291,9 +376,7 @@ async function loadPlayers(){
     .select("*");
 
     if(error){
-
         console.log(error);
-
         return;
     }
 
@@ -301,11 +384,21 @@ async function loadPlayers(){
 
     board.innerHTML = "";
 
+    let search = document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
     let groupedPlayers = {};
 
     data.forEach(entry => {
 
-        if(currentFilter !== "ALL" && entry.gamemode !== currentFilter){
+        if(currentFilter !== "ALL" &&
+           entry.gamemode !== currentFilter){
+            return;
+        }
+
+        if(!entry.player.toLowerCase().includes(search)){
             return;
         }
 
@@ -317,18 +410,26 @@ async function loadPlayers(){
             };
         }
 
-        groupedPlayers[entry.player].total += tierRank[entry.tier];
+        groupedPlayers[entry.player].total +=
+        tierRank[entry.tier];
 
         groupedPlayers[entry.player].modes.push(
             `
             <div class="mode">
 
-                ${entry.gamemode} • ${entry.tier} • ${tierRank[entry.tier]} punten
+                ${entry.gamemode}
+                •
+                ${entry.tier}
+                •
+                ${tierRank[entry.tier]} punten
 
                 ${
                     isAdmin
                     ?
-                    `<button class="deleteBtn" onclick="deleteTier(${entry.id})">❌</button>`
+                    `<button class="deleteBtn"
+                    onclick="deleteTier(${entry.id})">
+                    ❌
+                    </button>`
                     :
                     ""
                 }
@@ -339,32 +440,40 @@ async function loadPlayers(){
 
     });
 
-    let sortedPlayers = Object.entries(groupedPlayers);
+    let sortedPlayers =
+    Object.entries(groupedPlayers);
 
-    sortedPlayers.sort((a,b) => b[1].total - a[1].total);
+    sortedPlayers.sort(
+        (a,b) => b[1].total - a[1].total
+    );
 
-    sortedPlayers.forEach(([player, info]) => {
+    sortedPlayers.forEach(([player,info],index) => {
+
+        let medal = "";
+
+        if(index === 0) medal = "🥇";
+        if(index === 1) medal = "🥈";
+        if(index === 2) medal = "🥉";
 
         board.innerHTML += `
 
-            <div class="player">
+        <div class="player">
 
-                <div class="rank">
-                    ${player}
-                </div>
-
-                <div class="total">
-                    ⭐ ${info.total} punten totaal
-                </div>
-
-                <div>
-                    ${info.modes.join("")}
-                </div>
-
+            <div class="rank">
+                ${medal} ${player}
             </div>
+
+            <div class="total">
+                ⭐ ${info.total} punten totaal
+            </div>
+
+            ${info.modes.join("")}
+
+        </div>
 
         `;
     });
+
 }
 
 loadPlayers();
