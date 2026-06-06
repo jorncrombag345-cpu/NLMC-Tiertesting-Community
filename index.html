@@ -1,4 +1,4 @@
-```html
+```html id="n8x4pl"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -29,9 +29,9 @@ body{
 
     color:white;
 
-    overflow-x:hidden;
-
     min-height:100vh;
+
+    overflow-x:hidden;
 }
 
 /* BACKGROUND */
@@ -45,7 +45,7 @@ body{
 
     background:#00ff88;
 
-    filter:blur(200px);
+    filter:blur(220px);
 
     opacity:0.08;
 
@@ -66,7 +66,7 @@ body{
 
     background:#7b5cff;
 
-    filter:blur(200px);
+    filter:blur(220px);
 
     opacity:0.08;
 
@@ -95,7 +95,7 @@ body{
 
 .logo{
 
-    font-size:38px;
+    font-size:40px;
 
     font-weight:900;
 
@@ -116,15 +116,17 @@ body{
 
 .nav input{
 
-    background:rgba(255,255,255,0.05);
+    background:
+    rgba(255,255,255,0.05);
 
-    border:1px solid rgba(255,255,255,0.08);
+    border:
+    1px solid rgba(255,255,255,0.08);
 
     color:white;
 
     padding:14px 18px;
 
-    border-radius:16px;
+    border-radius:18px;
 
     outline:none;
 }
@@ -142,11 +144,11 @@ body{
 
     color:black;
 
-    font-weight:800;
+    font-weight:900;
 
-    padding:14px 22px;
+    padding:14px 24px;
 
-    border-radius:16px;
+    border-radius:18px;
 
     cursor:pointer;
 
@@ -158,7 +160,7 @@ body{
     transform:translateY(-3px);
 
     box-shadow:
-    0 10px 30px rgba(0,255,136,0.25);
+    0 12px 30px rgba(0,255,136,0.25);
 }
 
 /* HERO */
@@ -172,11 +174,11 @@ body{
 
 .hero h1{
 
-    font-size:100px;
+    font-size:110px;
 
     font-weight:900;
 
-    letter-spacing:-5px;
+    letter-spacing:-6px;
 
     background:
     linear-gradient(
@@ -192,11 +194,47 @@ body{
 
 .hero p{
 
-    margin-top:15px;
+    margin-top:16px;
 
     color:#8e97aa;
 
     font-size:20px;
+}
+
+/* SEARCH */
+
+.searchBox{
+
+    width:100%;
+
+    max-width:650px;
+
+    margin:40px auto;
+
+    position:relative;
+}
+
+.searchBox input{
+
+    width:100%;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    color:white;
+
+    padding:22px 25px;
+
+    border-radius:24px;
+
+    outline:none;
+
+    font-size:18px;
+
+    backdrop-filter:blur(15px);
 }
 
 /* ADMIN PANEL */
@@ -207,7 +245,9 @@ body{
 
     max-width:1300px;
 
-    margin:40px auto;
+    margin:auto;
+
+    margin-bottom:35px;
 
     background:
     rgba(255,255,255,0.04);
@@ -217,9 +257,9 @@ body{
 
     backdrop-filter:blur(20px);
 
-    border-radius:30px;
+    border-radius:35px;
 
-    padding:25px;
+    padding:28px;
 
     display:none;
 }
@@ -240,13 +280,14 @@ body{
 
     background:#10151f;
 
-    border:1px solid rgba(255,255,255,0.08);
+    border:
+    1px solid rgba(255,255,255,0.08);
 
     color:white;
 
     padding:14px;
 
-    border-radius:16px;
+    border-radius:18px;
 
     min-width:180px;
 }
@@ -259,11 +300,11 @@ body{
 
     color:black;
 
-    font-weight:800;
+    font-weight:900;
 
     padding:14px 22px;
 
-    border-radius:16px;
+    border-radius:18px;
 
     cursor:pointer;
 }
@@ -315,7 +356,7 @@ body{
 
     width:100%;
 
-    max-width:1400px;
+    max-width:1450px;
 
     margin:auto;
 
@@ -328,7 +369,7 @@ body{
     padding:0 25px 50px;
 }
 
-/* PLAYER CARD */
+/* PLAYER */
 
 .player{
 
@@ -340,9 +381,9 @@ body{
 
     backdrop-filter:blur(18px);
 
-    border-radius:32px;
+    border-radius:34px;
 
-    padding:28px;
+    padding:30px;
 
     display:flex;
 
@@ -391,7 +432,7 @@ body{
     scale(1.01);
 
     box-shadow:
-    0 15px 45px rgba(0,0,0,0.35);
+    0 18px 45px rgba(0,0,0,0.35);
 }
 
 .left{
@@ -405,10 +446,10 @@ body{
 
 .rank{
 
-    width:70px;
-    height:70px;
+    width:75px;
+    height:75px;
 
-    border-radius:22px;
+    border-radius:24px;
 
     background:
     linear-gradient(
@@ -425,17 +466,17 @@ body{
 
     align-items:center;
 
-    font-size:28px;
+    font-size:30px;
 
     font-weight:900;
 }
 
 .avatar{
 
-    width:80px;
-    height:80px;
+    width:82px;
+    height:82px;
 
-    border-radius:24px;
+    border-radius:26px;
 
     background:
     linear-gradient(
@@ -450,7 +491,7 @@ body{
 
     align-items:center;
 
-    font-size:30px;
+    font-size:32px;
 
     font-weight:900;
 
@@ -459,14 +500,14 @@ body{
 
 .playerInfo h2{
 
-    font-size:34px;
+    font-size:36px;
 
-    font-weight:800;
+    font-weight:900;
 }
 
 .playerInfo p{
 
-    margin-top:6px;
+    margin-top:7px;
 
     color:#8d96aa;
 }
@@ -478,7 +519,7 @@ body{
 
 .points h3{
 
-    font-size:42px;
+    font-size:45px;
 
     color:#00ff88;
 
@@ -501,7 +542,7 @@ body{
     background:
     rgba(0,0,0,0.75);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
 
     display:none;
 
@@ -516,21 +557,21 @@ body{
 
     width:92%;
 
-    max-width:650px;
+    max-width:700px;
 
     background:
     linear-gradient(
     145deg,
-    #0f1724,
+    #101827,
     #0a0f18
     );
 
     border:
     1px solid rgba(255,255,255,0.08);
 
-    border-radius:40px;
+    border-radius:42px;
 
-    padding:35px;
+    padding:38px;
 
     animation:popup 0.25s ease;
 }
@@ -557,10 +598,10 @@ body{
 
 .bigAvatar{
 
-    width:120px;
-    height:120px;
+    width:125px;
+    height:125px;
 
-    border-radius:30px;
+    border-radius:34px;
 
     background:
     linear-gradient(
@@ -577,31 +618,31 @@ body{
 
     align-items:center;
 
-    font-size:45px;
+    font-size:50px;
 
     font-weight:900;
 
     color:black;
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .modalName{
 
-    font-size:50px;
+    font-size:54px;
 
     font-weight:900;
 }
 
 .totalPoints{
 
-    margin-top:10px;
+    margin-top:12px;
 
     color:#00ff88;
 
     font-weight:700;
 
-    font-size:20px;
+    font-size:22px;
 }
 
 /* TIER GRID */
@@ -611,11 +652,11 @@ body{
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(120px,1fr));
+    repeat(auto-fit,minmax(130px,1fr));
 
-    gap:16px;
+    gap:18px;
 
-    margin-top:25px;
+    margin-top:30px;
 }
 
 .tierCard{
@@ -626,9 +667,9 @@ body{
     border:
     1px solid rgba(255,255,255,0.08);
 
-    border-radius:24px;
+    border-radius:26px;
 
-    padding:18px;
+    padding:20px;
 
     text-align:center;
 
@@ -637,21 +678,21 @@ body{
 
 .tierCard:hover{
 
-    transform:translateY(-3px);
+    transform:translateY(-4px);
 }
 
 .tierMode{
 
-    font-size:14px;
-
     color:#8d96aa;
+
+    font-size:14px;
 }
 
 .tierRank{
 
-    margin-top:8px;
+    margin-top:10px;
 
-    font-size:26px;
+    font-size:30px;
 
     font-weight:900;
 
@@ -660,7 +701,7 @@ body{
 
 .tierPoints{
 
-    margin-top:6px;
+    margin-top:8px;
 
     color:#ffc107;
 
@@ -669,9 +710,9 @@ body{
 
 .deleteBtn{
 
-    margin-top:12px;
-
     width:100%;
+
+    margin-top:14px;
 
     border:none;
 
@@ -681,7 +722,7 @@ body{
 
     padding:10px;
 
-    border-radius:12px;
+    border-radius:14px;
 
     cursor:pointer;
 }
@@ -690,7 +731,7 @@ body{
 
     width:100%;
 
-    margin-top:28px;
+    margin-top:30px;
 
     border:none;
 
@@ -703,7 +744,7 @@ body{
 
     color:black;
 
-    font-weight:800;
+    font-weight:900;
 
     padding:16px;
 
@@ -776,6 +817,19 @@ Login
 <h1>Leaderboard</h1>
 
 <p>Best Minecraft Competitive Players</p>
+
+</div>
+
+<!-- SEARCH -->
+
+<div class="searchBox">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search player..."
+onkeyup="loadPlayers()"
+>
 
 </div>
 
@@ -1082,6 +1136,12 @@ function closeModal(){
 
 async function loadPlayers(){
 
+    const search =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
     const { data,error } =
     await supabaseClient
     .from("players")
@@ -1108,6 +1168,14 @@ async function loadPlayers(){
         if(
             currentFilter !== "ALL" &&
             entry.gamemode !== currentFilter
+        ){
+            return;
+        }
+
+        if(
+            !entry.player
+            .toLowerCase()
+            .includes(search)
         ){
             return;
         }
