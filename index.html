@@ -1,4 +1,4 @@
-```html id="k2v9mx"
+```html id="a7m4zk"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -34,8 +34,6 @@ body{
     overflow-x:hidden;
 }
 
-/* BACKGROUND GLOW */
-
 .bgGlow{
 
     position:fixed;
@@ -59,8 +57,6 @@ body{
     z-index:-1;
 }
 
-/* NAVBAR */
-
 .nav{
 
     width:100%;
@@ -81,8 +77,6 @@ body{
     font-weight:800;
 
     letter-spacing:-1px;
-
-    color:white;
 }
 
 .logo span{
@@ -138,8 +132,6 @@ body{
     0 0 20px rgba(0,255,136,0.35);
 }
 
-/* HERO */
-
 .hero{
 
     text-align:center;
@@ -169,7 +161,76 @@ body{
     font-size:20px;
 }
 
-/* FILTERS */
+.adminPanel{
+
+    width:95%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    margin-bottom:30px;
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(20,20,20,0.95),
+    rgba(10,10,10,0.95)
+    );
+
+    border:
+    1px solid rgba(255,255,255,0.05);
+
+    border-radius:30px;
+
+    padding:25px;
+
+    display:none;
+}
+
+.adminTop{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    justify-content:center;
+}
+
+.adminTop input,
+.adminTop select{
+
+    background:#101010;
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    min-width:180px;
+}
+
+.adminTop button{
+
+    border:none;
+
+    background:#00ff88;
+
+    color:black;
+
+    font-weight:700;
+
+    padding:14px 20px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+}
 
 .filters{
 
@@ -210,8 +271,6 @@ body{
     color:black;
 }
 
-/* LEADERBOARD */
-
 #leaderboard{
 
     width:100%;
@@ -228,8 +287,6 @@ body{
 
     padding:0 25px 50px;
 }
-
-/* PLAYER */
 
 .player{
 
@@ -289,8 +346,6 @@ body{
     box-shadow:
     0 15px 40px rgba(0,255,136,0.08);
 }
-
-/* LEFT */
 
 .left{
 
@@ -355,8 +410,6 @@ body{
     font-size:15px;
 }
 
-/* RIGHT */
-
 .points{
 
     text-align:right;
@@ -377,8 +430,6 @@ body{
 
     margin-top:4px;
 }
-
-/* MODAL */
 
 .modal{
 
@@ -417,21 +468,6 @@ body{
     border-radius:35px;
 
     padding:35px;
-
-    animation:popup 0.25s ease;
-}
-
-@keyframes popup{
-
-    from{
-        opacity:0;
-        transform:scale(0.9);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
 }
 
 .modalName{
@@ -463,6 +499,21 @@ body{
     align-items:center;
 }
 
+.deleteBtn{
+
+    background:red;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+}
+
 .closeBtn{
 
     width:100%;
@@ -483,8 +534,6 @@ body{
 
     cursor:pointer;
 }
-
-/* MOBILE */
 
 @media(max-width:800px){
 
@@ -545,6 +594,56 @@ Login
 <h1>Leaderboard</h1>
 
 <p>Best Minecraft Competitive Players</p>
+
+</div>
+
+<!-- ADMIN PANEL -->
+
+<div class="adminPanel" id="adminPanel">
+
+<div class="adminTop">
+
+<input
+type="text"
+id="playerName"
+placeholder="Player Name"
+>
+
+<select id="gamemode">
+
+<option>Spear</option>
+<option>Mace</option>
+<option>Sword</option>
+<option>UHC</option>
+<option>Speed</option>
+<option>Axe</option>
+<option>Vanilla</option>
+<option>DIA SMP</option>
+<option>Cart</option>
+<option>Creeper</option>
+
+</select>
+
+<select id="tier">
+
+<option>HT1</option>
+<option>LT1</option>
+<option>HT2</option>
+<option>LT2</option>
+<option>HT3</option>
+<option>LT3</option>
+<option>HT4</option>
+<option>LT4</option>
+<option>HT5</option>
+<option>LT5</option>
+
+</select>
+
+<button onclick="addPlayer()">
+Add Tier
+</button>
+
+</div>
 
 </div>
 
@@ -631,6 +730,10 @@ function login(){
 
         isAdmin = true;
 
+        document
+        .getElementById("adminPanel")
+        .style.display = "block";
+
         alert("Admin login success");
 
     }else{
@@ -646,12 +749,58 @@ function filterMode(mode){
     loadPlayers();
 }
 
+async function addPlayer(){
+
+    const player =
+    document.getElementById("playerName").value;
+
+    const gamemode =
+    document.getElementById("gamemode").value;
+
+    const tier =
+    document.getElementById("tier").value;
+
+    if(player === "") return;
+
+    await supabaseClient
+    .from("players")
+    .insert([
+        {
+            player,
+            gamemode,
+            tier
+        }
+    ]);
+
+    document
+    .getElementById("playerName")
+    .value = "";
+
+    loadPlayers();
+}
+
+async function deleteTier(id){
+
+    await supabaseClient
+    .from("players")
+    .delete()
+    .eq("id",id);
+
+    openPlayer(currentPlayer);
+
+    loadPlayers();
+}
+
 function getAvatar(name){
 
     return name.charAt(0).toUpperCase();
 }
 
+let currentPlayer = "";
+
 function openPlayer(player){
+
+    currentPlayer = player;
 
     const modal =
     document.getElementById("modal");
@@ -687,8 +836,27 @@ function openPlayer(player){
 
             </div>
 
-            <div style="color:#00ff88;font-weight:700;">
-                ${tierRank[entry.tier]} pts
+            <div style="display:flex;gap:10px;align-items:center;">
+
+                <div style="color:#00ff88;font-weight:700;">
+                    ${tierRank[entry.tier]} pts
+                </div>
+
+                ${
+                    isAdmin
+                    ?
+                    `
+                    <button
+                    class="deleteBtn"
+                    onclick="deleteTier(${entry.id})"
+                    >
+                    X
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
             </div>
 
         </div>
