@@ -1,4 +1,4 @@
-```html id="f8x2vm"
+```html id="m9q2xp"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -10,7 +10,7 @@
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -25,65 +25,120 @@ body{
     font-family:'Poppins',sans-serif;
 
     background:
-    radial-gradient(circle at top,#1b1b1b,#080808);
+    radial-gradient(circle at top,#1b1f27,#090909 70%);
 
     color:white;
 
     min-height:100vh;
 
+    overflow-x:hidden;
+
     padding:30px;
 }
 
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    rgba(85,255,85,0.03) 1px,
+    transparent 1px
+    ),
+    linear-gradient(
+    90deg,
+    rgba(85,255,85,0.03) 1px,
+    transparent 1px
+    );
+
+    background-size:40px 40px;
+
+    z-index:-1;
+}
+
 .container{
-    max-width:1400px;
+
+    max-width:1500px;
+
     margin:auto;
 }
 
-.title{
+.hero{
 
     text-align:center;
-    margin-bottom:40px;
+
+    margin-bottom:50px;
 }
 
-.title h1{
+.hero h1{
 
-    font-size:70px;
+    font-family:'Orbitron',sans-serif;
+
+    font-size:90px;
+
+    font-weight:900;
 
     color:#55ff55;
 
     text-shadow:
     0 0 10px #55ff55,
-    0 0 25px #55ff55,
-    0 0 50px rgba(85,255,85,0.5);
+    0 0 30px #55ff55,
+    0 0 60px rgba(85,255,85,0.8);
 
-    font-weight:800;
+    animation:glow 2s infinite alternate;
 }
 
-.title p{
+@keyframes glow{
+
+    from{
+        text-shadow:
+        0 0 10px #55ff55,
+        0 0 30px #55ff55;
+    }
+
+    to{
+        text-shadow:
+        0 0 20px #55ff55,
+        0 0 60px #55ff55,
+        0 0 100px rgba(85,255,85,1);
+    }
+}
+
+.hero p{
 
     color:#999;
-    margin-top:10px;
-    font-size:18px;
+
+    margin-top:15px;
+
+    font-size:20px;
 }
 
 .glass{
 
-    background:rgba(20,20,20,0.75);
+    background:
+    rgba(15,15,15,0.75);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(18px);
 
-    border:1px solid rgba(255,255,255,0.05);
+    border:
+    1px solid rgba(255,255,255,0.05);
 
-    border-radius:24px;
+    border-radius:30px;
+
+    padding:30px;
 
     box-shadow:
-    0 10px 40px rgba(0,0,0,0.6);
+    0 15px 50px rgba(0,0,0,0.7);
 
-    padding:25px;
-}
-
-.adminPanel{
-    margin-bottom:30px;
+    margin-bottom:35px;
 }
 
 .topBar{
@@ -99,15 +154,15 @@ body{
 
 input,select,button{
 
-    padding:15px;
-
     border:none;
 
-    border-radius:14px;
+    border-radius:18px;
+
+    padding:16px 18px;
 
     font-size:16px;
 
-    transition:0.2s;
+    transition:0.25s;
 }
 
 input,select{
@@ -116,7 +171,10 @@ input,select{
 
     color:white;
 
-    border:1px solid #2b2b2b;
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    min-width:220px;
 }
 
 input:focus,
@@ -127,55 +185,65 @@ select:focus{
     border:1px solid #55ff55;
 
     box-shadow:
-    0 0 10px rgba(85,255,85,0.5);
+    0 0 15px rgba(85,255,85,0.5);
 }
 
 button{
 
-    background:linear-gradient(135deg,#55ff55,#32d932);
-
-    color:black;
+    cursor:pointer;
 
     font-weight:700;
 
-    cursor:pointer;
+    background:
+    linear-gradient(
+    135deg,
+    #55ff55,
+    #00cc66
+    );
+
+    color:black;
 }
 
 button:hover{
 
-    transform:translateY(-2px) scale(1.03);
+    transform:
+    translateY(-3px)
+    scale(1.04);
 
     box-shadow:
-    0 0 15px rgba(85,255,85,0.5);
+    0 0 20px rgba(85,255,85,0.5);
 }
 
 .search{
 
-    width:350px;
+    width:420px;
+
     max-width:95%;
 }
 
 .filterButtons{
 
-    margin-top:25px;
-    margin-bottom:35px;
     text-align:center;
+
+    margin-bottom:40px;
 }
 
 .filterButtons button{
 
-    margin:6px;
+    margin:7px;
 
-    background:#161616;
+    background:#151515;
 
     color:white;
 
-    border:1px solid #2c2c2c;
+    border:
+    1px solid rgba(255,255,255,0.06);
 }
 
 .filterButtons button:hover{
 
     background:#55ff55;
+
     color:black;
 }
 
@@ -184,9 +252,9 @@ button:hover{
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(350px,1fr));
+    repeat(auto-fit,minmax(380px,1fr));
 
-    gap:25px;
+    gap:30px;
 }
 
 .player{
@@ -195,23 +263,24 @@ button:hover{
 
     overflow:hidden;
 
-    border-radius:25px;
+    border-radius:30px;
 
-    padding:25px;
+    padding:30px;
 
     background:
     linear-gradient(
     145deg,
-    rgba(25,25,25,0.95),
-    rgba(15,15,15,0.95)
+    rgba(22,22,22,0.95),
+    rgba(10,10,10,0.98)
     );
 
-    border:1px solid rgba(255,255,255,0.05);
+    border:
+    1px solid rgba(255,255,255,0.06);
 
-    transition:0.3s;
+    transition:0.35s;
 
     box-shadow:
-    0 10px 25px rgba(0,0,0,0.5);
+    0 15px 40px rgba(0,0,0,0.7);
 }
 
 .player::before{
@@ -224,42 +293,66 @@ button:hover{
     left:0;
 
     width:100%;
-    height:5px;
+    height:6px;
 
     background:
-    linear-gradient(90deg,#55ff55,#00ffcc);
+    linear-gradient(
+    90deg,
+    #55ff55,
+    #00ffcc,
+    #55ff55
+    );
+
+    background-size:300%;
+
+    animation:borderMove 4s linear infinite;
+}
+
+@keyframes borderMove{
+
+    0%{
+        background-position:0%;
+    }
+
+    100%{
+        background-position:300%;
+    }
 }
 
 .player:hover{
 
     transform:
-    translateY(-8px)
-    scale(1.01);
+    translateY(-10px)
+    scale(1.02);
 
     box-shadow:
-    0 15px 35px rgba(85,255,85,0.25);
+    0 20px 50px rgba(85,255,85,0.25);
 }
 
 .rank{
 
-    font-size:34px;
+    font-size:38px;
 
     font-weight:800;
 
-    margin-bottom:10px;
+    margin-bottom:15px;
 
-    color:white;
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
 }
 
 .total{
 
-    font-size:22px;
+    font-size:24px;
 
     color:#55ff55;
 
     margin-bottom:20px;
 
-    font-weight:600;
+    font-weight:700;
 }
 
 .mode{
@@ -268,13 +361,13 @@ button:hover{
     rgba(255,255,255,0.03);
 
     border:
-    1px solid rgba(255,255,255,0.04);
+    1px solid rgba(255,255,255,0.05);
 
-    padding:12px;
+    border-radius:16px;
 
-    margin:10px 0;
+    padding:14px;
 
-    border-radius:14px;
+    margin:12px 0;
 
     display:flex;
 
@@ -282,52 +375,79 @@ button:hover{
 
     align-items:center;
 
-    transition:0.2s;
+    transition:0.25s;
 }
 
 .mode:hover{
 
     background:
     rgba(85,255,85,0.08);
+
+    transform:scale(1.01);
 }
 
 .modeText{
+
+    font-size:15px;
+
     text-align:left;
 }
 
 .deleteBtn{
 
-    background:red;
+    background:
+    linear-gradient(
+    135deg,
+    #ff4444,
+    #cc0000
+    );
 
     color:white;
 
-    padding:8px 12px;
+    border:none;
 
-    border-radius:10px;
+    padding:10px 14px;
 
-    font-size:14px;
+    border-radius:12px;
+
+    cursor:pointer;
 }
 
 .deleteBtn:hover{
 
     box-shadow:
-    0 0 12px rgba(255,0,0,0.5);
+    0 0 15px rgba(255,0,0,0.6);
 }
 
 .medal{
 
-    font-size:28px;
-
-    margin-right:8px;
+    font-size:34px;
 }
 
 .subtitle{
 
     text-align:center;
 
-    margin:25px 0;
+    color:#888;
 
-    color:#aaa;
+    margin-bottom:25px;
+
+    font-size:18px;
+}
+
+@media(max-width:700px){
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    #leaderboard{
+        grid-template-columns:1fr;
+    }
+
+    .rank{
+        font-size:30px;
+    }
 }
 
 </style>
@@ -337,15 +457,15 @@ button:hover{
 
 <div class="container">
 
-<div class="title">
+<div class="hero">
 
-<h1>NL Tier Testing</h1>
+<h1>NL TIERS</h1>
 
-<p>Minecraft Competitive Leaderboard</p>
+<p>Competitive Minecraft Leaderboard</p>
 
 </div>
 
-<div class="glass adminPanel">
+<div class="glass">
 
 <div class="topBar">
 
@@ -361,7 +481,8 @@ Login
 
 </div>
 
-<div id="adminBox" style="display:none; margin-top:25px;">
+<div id="adminBox"
+style="display:none;margin-top:25px;">
 
 <div class="topBar">
 
@@ -412,10 +533,12 @@ Toevoegen
 </div>
 
 <div class="subtitle">
+
 Zoek spelers of filter gamemodes
+
 </div>
 
-<div class="topBar">
+<div class="topBar" style="margin-bottom:30px;">
 
 <input
 type="text"
@@ -429,17 +552,17 @@ onkeyup="loadPlayers()"
 
 <div class="filterButtons">
 
-<button onclick="filterMode('ALL')">All</button>
-<button onclick="filterMode('Spear')">Spear</button>
-<button onclick="filterMode('Mace')">Mace</button>
-<button onclick="filterMode('Sword')">Sword</button>
+<button onclick="filterMode('ALL')">ALL</button>
+<button onclick="filterMode('Spear')">SPEAR</button>
+<button onclick="filterMode('Mace')">MACE</button>
+<button onclick="filterMode('Sword')">SWORD</button>
 <button onclick="filterMode('UHC')">UHC</button>
-<button onclick="filterMode('Speed')">Speed</button>
-<button onclick="filterMode('Axe')">Axe</button>
-<button onclick="filterMode('Vanilla')">Vanilla</button>
+<button onclick="filterMode('Speed')">SPEED</button>
+<button onclick="filterMode('Axe')">AXE</button>
+<button onclick="filterMode('Vanilla')">VANILLA</button>
 <button onclick="filterMode('DIA SMP')">DIA SMP</button>
-<button onclick="filterMode('Cart')">Cart</button>
-<button onclick="filterMode('Creeper')">Creeper</button>
+<button onclick="filterMode('Cart')">CART</button>
+<button onclick="filterMode('Creeper')">CREEPER</button>
 
 </div>
 
@@ -475,7 +598,6 @@ const tierRank = {
     "HT2":20,
     "LT1":25,
     "HT1":30
-
 };
 
 let currentFilter = "ALL";
@@ -491,7 +613,8 @@ function login(){
 
         isAdmin = true;
 
-        document.getElementById("adminBox")
+        document
+        .getElementById("adminBox")
         .style.display = "block";
 
         alert("Ingelogd!");
@@ -534,7 +657,9 @@ async function addPlayer(){
         }
     ]);
 
-    document.getElementById("playerName").value="";
+    document
+    .getElementById("playerName")
+    .value = "";
 
     loadPlayers();
 }
@@ -569,7 +694,8 @@ async function loadPlayers(){
     board.innerHTML = "";
 
     let search =
-    document.getElementById("searchInput")
+    document
+    .getElementById("searchInput")
     .value
     .toLowerCase();
 
@@ -644,22 +770,18 @@ async function loadPlayers(){
     Object.entries(groupedPlayers);
 
     sortedPlayers.sort(
-        (a,b) =>
-        b[1].total - a[1].total
+        (a,b)=>
+        b[1].total-a[1].total
     );
 
-    sortedPlayers.forEach(([player,info],index)=>{
+    sortedPlayers.forEach(
+    ([player,info],index)=>{
 
         let medal = "";
 
-        if(index === 0)
-        medal = "🥇";
-
-        if(index === 1)
-        medal = "🥈";
-
-        if(index === 2)
-        medal = "🥉";
+        if(index === 0) medal = "🥇";
+        if(index === 1) medal = "🥈";
+        if(index === 2) medal = "🥉";
 
         board.innerHTML += `
 
@@ -676,7 +798,9 @@ async function loadPlayers(){
             </div>
 
             <div class="total">
+
                 ⭐ ${info.total} punten totaal
+
             </div>
 
             ${info.modes.join("")}
