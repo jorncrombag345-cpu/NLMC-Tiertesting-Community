@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NL Tiers • Elite Leaderboard</title>
+<title>NL TIERS • ELITE</title>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
@@ -28,8 +28,8 @@ body{
 font-family:'Inter',sans-serif;
 
 background:
-radial-gradient(circle at top left,#00ff8835,transparent 25%),
-radial-gradient(circle at bottom right,#00d0ff35,transparent 25%),
+radial-gradient(circle at top left,#00ff8830,transparent 20%),
+radial-gradient(circle at bottom right,#00d0ff30,transparent 20%),
 radial-gradient(circle at center,#7b5cff20,transparent 40%),
 #040816;
 
@@ -40,58 +40,47 @@ overflow-x:hidden;
 min-height:100vh;
 }
 
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-width:10px;
-}
-
-::-webkit-scrollbar-thumb{
-background:#00ff88;
-border-radius:20px;
-}
-
 /* BACKGROUND */
 
-.glow1,.glow2,.glow3{
+.bg1,.bg2,.bg3{
 
 position:fixed;
 
 border-radius:50%;
 
-filter:blur(160px);
+filter:blur(170px);
 
 z-index:-1;
 }
 
-.glow1{
-width:500px;
-height:500px;
+.bg1{
+width:550px;
+height:550px;
 background:#00ff88;
-top:-200px;
-left:-200px;
+top:-250px;
+left:-250px;
 opacity:0.15;
 }
 
-.glow2{
+.bg2{
 width:700px;
 height:700px;
 background:#00d0ff;
-bottom:-250px;
-right:-250px;
+bottom:-300px;
+right:-300px;
 opacity:0.12;
 }
 
-.glow3{
-width:500px;
-height:500px;
+.bg3{
+width:450px;
+height:450px;
 background:#7b5cff;
-top:250px;
-right:-150px;
+top:300px;
+right:-180px;
 opacity:0.10;
 }
 
-/* NAV */
+/* NAVBAR */
 
 .nav{
 
@@ -107,9 +96,9 @@ position:sticky;
 
 top:0;
 
-z-index:100;
+z-index:999;
 
-background:rgba(4,8,22,0.7);
+background:rgba(4,8,22,0.75);
 
 backdrop-filter:blur(20px);
 
@@ -119,7 +108,7 @@ border-bottom:
 
 .logo{
 
-font-size:55px;
+font-size:60px;
 
 font-weight:900;
 
@@ -134,7 +123,7 @@ color:#00ff88;
 
 display:flex;
 
-gap:14px;
+gap:15px;
 }
 
 .navRight input{
@@ -160,7 +149,7 @@ font-size:15px;
 
 .navRight button{
 
-padding:16px 24px;
+padding:16px 25px;
 
 border:none;
 
@@ -185,21 +174,21 @@ transition:0.25s;
 transform:scale(1.05);
 
 box-shadow:
-0 0 35px rgba(0,255,136,0.45);
+0 0 35px rgba(0,255,136,0.4);
 }
 
 /* HERO */
 
 .hero{
 
-padding:100px 20px 50px;
+padding:110px 20px 70px;
 
 text-align:center;
 }
 
 .hero h1{
 
-font-size:170px;
+font-size:180px;
 
 font-weight:900;
 
@@ -220,16 +209,16 @@ white,
 
 .hero p{
 
-margin-top:18px;
+margin-top:20px;
 
-font-size:24px;
+font-size:26px;
 
 color:#98a4bb;
 }
 
-/* STATS */
+/* TOP CARDS */
 
-.stats{
+.topCards{
 
 display:flex;
 
@@ -242,13 +231,13 @@ flex-wrap:wrap;
 padding:20px;
 }
 
-.stat{
+.card{
 
 width:280px;
 
-padding:30px;
+padding:35px;
 
-border-radius:32px;
+border-radius:35px;
 
 background:
 rgba(255,255,255,0.05);
@@ -263,26 +252,29 @@ text-align:center;
 transition:0.25s;
 }
 
-.stat:hover{
+.card:hover{
 
-transform:translateY(-6px);
+transform:translateY(-8px);
 
 border:
 1px solid rgba(0,255,136,0.35);
+
+box-shadow:
+0 0 40px rgba(0,255,136,0.12);
 }
 
-.stat h2{
+.card h2{
 
-font-size:60px;
+font-size:65px;
 
 font-weight:900;
 
 color:#00ff88;
 }
 
-.stat p{
+.card p{
 
-margin-top:12px;
+margin-top:10px;
 
 color:#98a4bb;
 }
@@ -291,20 +283,20 @@ color:#98a4bb;
 
 .searchArea{
 
-max-width:1000px;
+max-width:1100px;
 
 margin:auto;
 
-padding:30px 20px;
+padding:35px 20px;
 }
 
 .searchArea input{
 
 width:100%;
 
-padding:26px;
+padding:28px;
 
-border-radius:26px;
+border-radius:30px;
 
 background:
 rgba(255,255,255,0.05);
@@ -316,7 +308,7 @@ backdrop-filter:blur(25px);
 
 color:white;
 
-font-size:18px;
+font-size:20px;
 
 outline:none;
 }
@@ -331,14 +323,14 @@ flex-wrap:wrap;
 
 justify-content:center;
 
-gap:14px;
+gap:15px;
 
-padding:10px 20px 35px;
+padding:10px 20px 40px;
 }
 
 .filters button{
 
-padding:15px 22px;
+padding:16px 24px;
 
 border:none;
 
@@ -376,7 +368,7 @@ display:none;
 
 width:95%;
 
-max-width:1650px;
+max-width:1700px;
 
 margin:auto;
 
@@ -384,7 +376,7 @@ margin-bottom:45px;
 
 padding:40px;
 
-border-radius:38px;
+border-radius:40px;
 
 background:
 rgba(255,255,255,0.05);
@@ -397,9 +389,9 @@ backdrop-filter:blur(25px);
 
 .admin h2{
 
-font-size:45px;
+font-size:50px;
 
-margin-bottom:22px;
+margin-bottom:25px;
 }
 
 .adminGrid{
@@ -459,7 +451,7 @@ font-size:16px;
 
 width:100%;
 
-max-width:1700px;
+max-width:1750px;
 
 margin:auto;
 
@@ -469,16 +461,16 @@ display:flex;
 
 flex-direction:column;
 
-gap:30px;
+gap:35px;
 }
 
 /* PLAYER */
 
 .player{
 
-padding:34px;
+padding:36px;
 
-border-radius:42px;
+border-radius:45px;
 
 background:
 rgba(255,255,255,0.05);
@@ -509,27 +501,27 @@ content:"";
 
 position:absolute;
 
-width:200px;
-height:200px;
+width:250px;
+height:250px;
 
 background:
-radial-gradient(circle,#00ff8835,transparent);
+radial-gradient(circle,#00ff8830,transparent);
 
-top:-60px;
-right:-60px;
+top:-90px;
+right:-90px;
 }
 
 .player:hover{
 
 transform:
-translateY(-8px)
+translateY(-10px)
 scale(1.01);
 
 border:
-1px solid rgba(0,255,136,0.35);
+1px solid rgba(0,255,136,0.4);
 
 box-shadow:
-0 0 60px rgba(0,255,136,0.15);
+0 0 65px rgba(0,255,136,0.15);
 }
 
 .playerLeft{
@@ -538,15 +530,15 @@ display:flex;
 
 align-items:center;
 
-gap:25px;
+gap:28px;
 }
 
 .rank{
 
-width:100px;
-height:100px;
+width:110px;
+height:110px;
 
-border-radius:30px;
+border-radius:32px;
 
 background:
 linear-gradient(
@@ -561,22 +553,22 @@ justify-content:center;
 
 align-items:center;
 
-font-size:38px;
+font-size:42px;
 
 font-weight:900;
 
 color:black;
 
 box-shadow:
-0 0 25px rgba(255,193,7,0.4);
+0 0 35px rgba(255,193,7,0.35);
 }
 
 .avatar{
 
-width:120px;
-height:120px;
+width:130px;
+height:130px;
 
-border-radius:36px;
+border-radius:38px;
 
 background:
 linear-gradient(
@@ -591,19 +583,19 @@ justify-content:center;
 
 align-items:center;
 
-font-size:55px;
+font-size:60px;
 
 font-weight:900;
 
 color:black;
 
 box-shadow:
-0 0 40px rgba(0,255,136,0.3);
+0 0 40px rgba(0,255,136,0.25);
 }
 
 .playerInfo h2{
 
-font-size:52px;
+font-size:56px;
 
 font-weight:900;
 }
@@ -612,7 +604,7 @@ font-weight:900;
 
 margin-top:10px;
 
-font-size:18px;
+font-size:19px;
 
 color:#98a4bb;
 }
@@ -624,7 +616,7 @@ text-align:right;
 
 .points h3{
 
-font-size:72px;
+font-size:75px;
 
 font-weight:900;
 
@@ -647,7 +639,7 @@ position:fixed;
 inset:0;
 
 background:
-rgba(0,0,0,0.78);
+rgba(0,0,0,0.8);
 
 display:none;
 
@@ -657,14 +649,14 @@ align-items:center;
 
 backdrop-filter:blur(15px);
 
-z-index:999;
+z-index:9999;
 }
 
 .modalContent{
 
 width:92%;
 
-max-width:1000px;
+max-width:1100px;
 
 background:
 linear-gradient(
@@ -673,9 +665,9 @@ linear-gradient(
 #0b1020
 );
 
-padding:50px;
+padding:55px;
 
-border-radius:45px;
+border-radius:50px;
 
 border:
 1px solid rgba(255,255,255,0.08);
@@ -689,15 +681,15 @@ overflow:auto;
 
 text-align:center;
 
-margin-bottom:35px;
+margin-bottom:40px;
 }
 
 .bigAvatar{
 
-width:190px;
-height:190px;
+width:200px;
+height:200px;
 
-border-radius:55px;
+border-radius:60px;
 
 background:
 linear-gradient(
@@ -712,7 +704,7 @@ justify-content:center;
 
 align-items:center;
 
-font-size:85px;
+font-size:90px;
 
 font-weight:900;
 
@@ -720,24 +712,24 @@ color:black;
 
 margin:auto;
 
-margin-bottom:22px;
+margin-bottom:25px;
 
 box-shadow:
-0 0 50px rgba(0,255,136,0.3);
+0 0 55px rgba(0,255,136,0.25);
 }
 
 .modalName{
 
-font-size:90px;
+font-size:95px;
 
 font-weight:900;
 }
 
 .totalPoints{
 
-margin-top:14px;
+margin-top:15px;
 
-font-size:30px;
+font-size:32px;
 
 color:#00ff88;
 }
@@ -747,16 +739,16 @@ color:#00ff88;
 display:grid;
 
 grid-template-columns:
-repeat(auto-fit,minmax(200px,1fr));
+repeat(auto-fit,minmax(220px,1fr));
 
-gap:24px;
+gap:25px;
 }
 
 .tier{
 
-padding:30px;
+padding:32px;
 
-border-radius:30px;
+border-radius:32px;
 
 background:
 rgba(255,255,255,0.05);
@@ -777,7 +769,7 @@ border:
 1px solid rgba(0,255,136,0.35);
 
 box-shadow:
-0 0 35px rgba(0,255,136,0.12);
+0 0 40px rgba(0,255,136,0.12);
 }
 
 .tier h3{
@@ -789,9 +781,9 @@ color:#98a4bb;
 
 .tier h2{
 
-margin-top:12px;
+margin-top:14px;
 
-font-size:52px;
+font-size:58px;
 
 font-weight:900;
 
@@ -813,7 +805,7 @@ margin-top:18px;
 
 width:100%;
 
-padding:14px;
+padding:15px;
 
 border:none;
 
@@ -838,7 +830,7 @@ padding:20px;
 
 border:none;
 
-border-radius:20px;
+border-radius:22px;
 
 background:
 linear-gradient(
@@ -895,9 +887,9 @@ font-size:65px;
 </head>
 <body>
 
-<div class="glow1"></div>
-<div class="glow2"></div>
-<div class="glow3"></div>
+<div class="bg1"></div>
+<div class="bg2"></div>
+<div class="bg3"></div>
 
 <div class="nav">
 
@@ -925,23 +917,23 @@ LOGIN
 
 <h1>Leaderboard</h1>
 
-<p>The most elite Minecraft competitive players</p>
+<p>The #1 Minecraft Competitive Ranking System</p>
 
 </div>
 
-<div class="stats">
+<div class="topCards">
 
-<div class="stat">
+<div class="card">
 <h2 id="playersCount">0</h2>
 <p>Total Players</p>
 </div>
 
-<div class="stat">
+<div class="card">
 <h2 id="tiersCount">0</h2>
 <p>Total Tiers</p>
 </div>
 
-<div class="stat">
+<div class="card">
 <h2>10</h2>
 <p>Gamemodes</p>
 </div>
@@ -1026,8 +1018,6 @@ ADD TIER
 </div>
 
 <div id="leaderboard"></div>
-
-<!-- MODAL -->
 
 <div class="modal" id="modal">
 
