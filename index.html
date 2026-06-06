@@ -1,4 +1,4 @@
-```html id="m9q2xp"
+```html id="p4x8zn"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NL Tier Testing</title>
+<title>NL Tiers</title>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -25,7 +25,7 @@ body{
     font-family:'Poppins',sans-serif;
 
     background:
-    radial-gradient(circle at top,#1b1f27,#090909 70%);
+    radial-gradient(circle at top,#171b22,#070707 75%);
 
     color:white;
 
@@ -42,22 +42,11 @@ body::before{
 
     position:fixed;
 
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
+    inset:0;
 
     background:
-    linear-gradient(
-    rgba(85,255,85,0.03) 1px,
-    transparent 1px
-    ),
-    linear-gradient(
-    90deg,
-    rgba(85,255,85,0.03) 1px,
-    transparent 1px
-    );
+    linear-gradient(rgba(85,255,85,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(85,255,85,0.03) 1px, transparent 1px);
 
     background-size:40px 40px;
 
@@ -66,7 +55,7 @@ body::before{
 
 .container{
 
-    max-width:1500px;
+    max-width:1600px;
 
     margin:auto;
 }
@@ -82,7 +71,7 @@ body::before{
 
     font-family:'Orbitron',sans-serif;
 
-    font-size:90px;
+    font-size:95px;
 
     font-weight:900;
 
@@ -106,7 +95,7 @@ body::before{
 
     to{
         text-shadow:
-        0 0 20px #55ff55,
+        0 0 25px #55ff55,
         0 0 60px #55ff55,
         0 0 100px rgba(85,255,85,1);
     }
@@ -114,7 +103,7 @@ body::before{
 
 .hero p{
 
-    color:#999;
+    color:#8d8d8d;
 
     margin-top:15px;
 
@@ -131,14 +120,14 @@ body::before{
     border:
     1px solid rgba(255,255,255,0.05);
 
-    border-radius:30px;
+    border-radius:35px;
 
     padding:30px;
 
-    box-shadow:
-    0 15px 50px rgba(0,0,0,0.7);
-
     margin-bottom:35px;
+
+    box-shadow:
+    0 15px 60px rgba(0,0,0,0.7);
 }
 
 .topBar{
@@ -147,9 +136,9 @@ body::before{
 
     flex-wrap:wrap;
 
-    gap:15px;
-
     justify-content:center;
+
+    gap:15px;
 }
 
 input,select,button{
@@ -158,7 +147,7 @@ input,select,button{
 
     border-radius:18px;
 
-    padding:16px 18px;
+    padding:16px 20px;
 
     font-size:16px;
 
@@ -167,12 +156,12 @@ input,select,button{
 
 input,select{
 
-    background:#111;
+    background:#101010;
 
     color:white;
 
     border:
-    1px solid rgba(255,255,255,0.08);
+    1px solid rgba(255,255,255,0.06);
 
     min-width:220px;
 }
@@ -232,7 +221,7 @@ button:hover{
 
     margin:7px;
 
-    background:#151515;
+    background:#161616;
 
     color:white;
 
@@ -252,7 +241,7 @@ button:hover{
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(380px,1fr));
+    repeat(auto-fit,minmax(400px,1fr));
 
     gap:30px;
 }
@@ -263,21 +252,23 @@ button:hover{
 
     overflow:hidden;
 
-    border-radius:30px;
+    border-radius:35px;
 
     padding:30px;
 
     background:
     linear-gradient(
     145deg,
-    rgba(22,22,22,0.95),
+    rgba(20,20,20,0.95),
     rgba(10,10,10,0.98)
     );
 
     border:
-    1px solid rgba(255,255,255,0.06);
+    1px solid rgba(255,255,255,0.05);
 
     transition:0.35s;
+
+    cursor:pointer;
 
     box-shadow:
     0 15px 40px rgba(0,0,0,0.7);
@@ -331,7 +322,7 @@ button:hover{
 
 .rank{
 
-    font-size:38px;
+    font-size:40px;
 
     font-weight:800;
 
@@ -363,7 +354,7 @@ button:hover{
     border:
     1px solid rgba(255,255,255,0.05);
 
-    border-radius:16px;
+    border-radius:18px;
 
     padding:14px;
 
@@ -374,22 +365,15 @@ button:hover{
     justify-content:space-between;
 
     align-items:center;
-
-    transition:0.25s;
 }
 
 .mode:hover{
 
     background:
     rgba(85,255,85,0.08);
-
-    transform:scale(1.01);
 }
 
 .modeText{
-
-    font-size:15px;
-
     text-align:left;
 }
 
@@ -404,19 +388,9 @@ button:hover{
 
     color:white;
 
-    border:none;
-
     padding:10px 14px;
 
     border-radius:12px;
-
-    cursor:pointer;
-}
-
-.deleteBtn:hover{
-
-    box-shadow:
-    0 0 15px rgba(255,0,0,0.6);
 }
 
 .medal{
@@ -428,17 +402,94 @@ button:hover{
 
     text-align:center;
 
-    color:#888;
+    color:#8d8d8d;
 
     margin-bottom:25px;
 
     font-size:18px;
 }
 
+/* PLAYER POPUP */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,0.8);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+}
+
+.popupContent{
+
+    width:90%;
+
+    max-width:700px;
+
+    background:
+    linear-gradient(
+    145deg,
+    #171717,
+    #0f0f0f
+    );
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:35px;
+
+    padding:35px;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.8);
+
+    animation:popupAnim 0.3s ease;
+}
+
+@keyframes popupAnim{
+
+    from{
+        transform:scale(0.8);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.popupName{
+
+    font-size:50px;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+
+    color:#55ff55;
+}
+
+.closeBtn{
+
+    margin-top:25px;
+
+    width:100%;
+}
+
 @media(max-width:700px){
 
     .hero h1{
-        font-size:55px;
+        font-size:60px;
     }
 
     #leaderboard{
@@ -570,6 +621,26 @@ onkeyup="loadPlayers()"
 
 </div>
 
+<!-- PLAYER POPUP -->
+
+<div class="popup" id="popup">
+
+<div class="popupContent">
+
+<div class="popupName" id="popupName">
+Player
+</div>
+
+<div id="popupStats"></div>
+
+<button class="closeBtn" onclick="closePopup()">
+Sluiten
+</button>
+
+</div>
+
+</div>
+
 <script>
 
 const SUPABASE_URL =
@@ -603,6 +674,8 @@ const tierRank = {
 let currentFilter = "ALL";
 
 let isAdmin = false;
+
+let allData = [];
 
 function login(){
 
@@ -674,6 +747,86 @@ async function deleteTier(id){
     loadPlayers();
 }
 
+function openPlayer(player){
+
+    const popup =
+    document.getElementById("popup");
+
+    const popupName =
+    document.getElementById("popupName");
+
+    const popupStats =
+    document.getElementById("popupStats");
+
+    popup.style.display = "flex";
+
+    popupName.innerHTML = player;
+
+    let playerData =
+    allData.filter(x => x.player === player);
+
+    let html = "";
+
+    let total = 0;
+
+    playerData.forEach(entry => {
+
+        total += tierRank[entry.tier];
+
+        html += `
+
+        <div class="mode">
+
+            <div class="modeText">
+
+                ${entry.gamemode}
+                •
+                ${entry.tier}
+                •
+                ${tierRank[entry.tier]} punten
+
+            </div>
+
+            ${
+                isAdmin
+                ?
+                `
+                <button
+                class="deleteBtn"
+                onclick="deleteTier(${entry.id})"
+                >
+                ❌
+                </button>
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        `;
+    });
+
+    popupStats.innerHTML = `
+
+    <div class="total">
+
+        ⭐ ${total} punten totaal
+
+    </div>
+
+    ${html}
+
+    `;
+}
+
+function closePopup(){
+
+    document
+    .getElementById("popup")
+    .style.display = "none";
+}
+
 async function loadPlayers(){
 
     const { data,error } =
@@ -687,6 +840,8 @@ async function loadPlayers(){
 
         return;
     }
+
+    allData = data;
 
     const board =
     document.getElementById("leaderboard");
@@ -722,48 +877,12 @@ async function loadPlayers(){
 
             groupedPlayers[entry.player] = {
 
-                total:0,
-                modes:[]
+                total:0
             };
         }
 
         groupedPlayers[entry.player].total +=
         tierRank[entry.tier];
-
-        groupedPlayers[entry.player].modes.push(
-
-            `
-            <div class="mode">
-
-                <div class="modeText">
-
-                    ${entry.gamemode}
-                    •
-                    ${entry.tier}
-                    •
-                    ${tierRank[entry.tier]} punten
-
-                </div>
-
-                ${
-                    isAdmin
-                    ?
-                    `
-                    <button
-                    class="deleteBtn"
-                    onclick="deleteTier(${entry.id})"
-                    >
-                    ❌
-                    </button>
-                    `
-                    :
-                    ""
-                }
-
-            </div>
-            `
-        );
-
     });
 
     let sortedPlayers =
@@ -785,7 +904,10 @@ async function loadPlayers(){
 
         board.innerHTML += `
 
-        <div class="player">
+        <div
+        class="player"
+        onclick="openPlayer('${player}')"
+        >
 
             <div class="rank">
 
@@ -802,8 +924,6 @@ async function loadPlayers(){
                 ⭐ ${info.total} punten totaal
 
             </div>
-
-            ${info.modes.join("")}
 
         </div>
 
