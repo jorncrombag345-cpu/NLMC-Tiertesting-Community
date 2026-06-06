@@ -1,4 +1,4 @@
-```html id="p4x8zn"
+```html id="k2v9mx"
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -10,7 +10,7 @@
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -22,115 +22,156 @@
 
 body{
 
-    font-family:'Poppins',sans-serif;
+    font-family:'Inter',sans-serif;
 
     background:
-    radial-gradient(circle at top,#171b22,#070707 75%);
+    radial-gradient(circle at top,#141414,#070707 70%);
 
     color:white;
 
     min-height:100vh;
 
     overflow-x:hidden;
-
-    padding:30px;
 }
 
-body::before{
+/* BACKGROUND GLOW */
 
-    content:"";
+.bgGlow{
 
     position:fixed;
 
-    inset:0;
+    width:700px;
+    height:700px;
 
-    background:
-    linear-gradient(rgba(85,255,85,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(85,255,85,0.03) 1px, transparent 1px);
+    background:#00ff88;
 
-    background-size:40px 40px;
+    filter:blur(180px);
+
+    opacity:0.08;
+
+    border-radius:50%;
+
+    top:-250px;
+    left:50%;
+
+    transform:translateX(-50%);
 
     z-index:-1;
 }
 
-.container{
+/* NAVBAR */
 
-    max-width:1600px;
+.nav{
 
-    margin:auto;
+    width:100%;
+
+    padding:25px 50px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
 }
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+
+    color:white;
+}
+
+.logo span{
+    color:#00ff88;
+}
+
+.navRight{
+
+    display:flex;
+
+    gap:15px;
+}
+
+.nav input{
+
+    background:#111;
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:16px;
+
+    width:220px;
+}
+
+.nav button{
+
+    border:none;
+
+    background:#00ff88;
+
+    color:black;
+
+    font-weight:700;
+
+    padding:14px 20px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    transition:0.25s;
+}
+
+.nav button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 0 20px rgba(0,255,136,0.35);
+}
+
+/* HERO */
 
 .hero{
 
     text-align:center;
 
-    margin-bottom:50px;
+    margin-top:20px;
+
+    margin-bottom:45px;
 }
 
 .hero h1{
 
-    font-family:'Orbitron',sans-serif;
+    font-size:90px;
 
-    font-size:95px;
+    font-weight:800;
 
-    font-weight:900;
+    letter-spacing:-4px;
 
-    color:#55ff55;
-
-    text-shadow:
-    0 0 10px #55ff55,
-    0 0 30px #55ff55,
-    0 0 60px rgba(85,255,85,0.8);
-
-    animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-
-    from{
-        text-shadow:
-        0 0 10px #55ff55,
-        0 0 30px #55ff55;
-    }
-
-    to{
-        text-shadow:
-        0 0 25px #55ff55,
-        0 0 60px #55ff55,
-        0 0 100px rgba(85,255,85,1);
-    }
+    line-height:1;
 }
 
 .hero p{
 
-    color:#8d8d8d;
+    margin-top:18px;
 
-    margin-top:15px;
+    color:#8a8a8a;
 
     font-size:20px;
 }
 
-.glass{
+/* FILTERS */
 
-    background:
-    rgba(15,15,15,0.75);
-
-    backdrop-filter:blur(18px);
-
-    border:
-    1px solid rgba(255,255,255,0.05);
-
-    border-radius:35px;
-
-    padding:30px;
-
-    margin-bottom:35px;
-
-    box-shadow:
-    0 15px 60px rgba(0,0,0,0.7);
-}
-
-.topBar{
+.filters{
 
     display:flex;
 
@@ -138,140 +179,87 @@ body::before{
 
     justify-content:center;
 
-    gap:15px;
+    gap:12px;
+
+    margin-bottom:40px;
+
+    padding:0 20px;
 }
 
-input,select,button{
+.filters button{
 
-    border:none;
+    background:#101010;
 
-    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.05);
 
-    padding:16px 20px;
+    color:#d7d7d7;
 
-    font-size:16px;
+    padding:12px 18px;
+
+    border-radius:14px;
+
+    cursor:pointer;
 
     transition:0.25s;
 }
 
-input,select{
+.filters button:hover{
 
-    background:#101010;
-
-    color:white;
-
-    border:
-    1px solid rgba(255,255,255,0.06);
-
-    min-width:220px;
-}
-
-input:focus,
-select:focus{
-
-    outline:none;
-
-    border:1px solid #55ff55;
-
-    box-shadow:
-    0 0 15px rgba(85,255,85,0.5);
-}
-
-button{
-
-    cursor:pointer;
-
-    font-weight:700;
-
-    background:
-    linear-gradient(
-    135deg,
-    #55ff55,
-    #00cc66
-    );
+    background:#00ff88;
 
     color:black;
 }
 
-button:hover{
-
-    transform:
-    translateY(-3px)
-    scale(1.04);
-
-    box-shadow:
-    0 0 20px rgba(85,255,85,0.5);
-}
-
-.search{
-
-    width:420px;
-
-    max-width:95%;
-}
-
-.filterButtons{
-
-    text-align:center;
-
-    margin-bottom:40px;
-}
-
-.filterButtons button{
-
-    margin:7px;
-
-    background:#161616;
-
-    color:white;
-
-    border:
-    1px solid rgba(255,255,255,0.06);
-}
-
-.filterButtons button:hover{
-
-    background:#55ff55;
-
-    color:black;
-}
+/* LEADERBOARD */
 
 #leaderboard{
 
-    display:grid;
+    width:100%;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(400px,1fr));
+    max-width:1400px;
 
-    gap:30px;
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    padding:0 25px 50px;
 }
 
+/* PLAYER */
+
 .player{
-
-    position:relative;
-
-    overflow:hidden;
-
-    border-radius:35px;
-
-    padding:30px;
 
     background:
     linear-gradient(
     145deg,
-    rgba(20,20,20,0.95),
-    rgba(10,10,10,0.98)
+    rgba(18,18,18,0.95),
+    rgba(10,10,10,0.95)
     );
 
     border:
     1px solid rgba(255,255,255,0.05);
 
-    transition:0.35s;
+    border-radius:28px;
+
+    padding:26px 30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    transition:0.3s;
 
     cursor:pointer;
 
-    box-shadow:
-    0 15px 40px rgba(0,0,0,0.7);
+    position:relative;
+
+    overflow:hidden;
 }
 
 .player::before{
@@ -283,142 +271,123 @@ button:hover{
     top:0;
     left:0;
 
-    width:100%;
-    height:6px;
+    width:4px;
+    height:100%;
 
-    background:
-    linear-gradient(
-    90deg,
-    #55ff55,
-    #00ffcc,
-    #55ff55
-    );
-
-    background-size:300%;
-
-    animation:borderMove 4s linear infinite;
-}
-
-@keyframes borderMove{
-
-    0%{
-        background-position:0%;
-    }
-
-    100%{
-        background-position:300%;
-    }
+    background:#00ff88;
 }
 
 .player:hover{
 
     transform:
-    translateY(-10px)
-    scale(1.02);
+    translateY(-4px)
+    scale(1.01);
+
+    border:
+    1px solid rgba(0,255,136,0.2);
 
     box-shadow:
-    0 20px 50px rgba(85,255,85,0.25);
+    0 15px 40px rgba(0,255,136,0.08);
+}
+
+/* LEFT */
+
+.left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:22px;
 }
 
 .rank{
 
-    font-size:40px;
+    font-size:34px;
 
     font-weight:800;
 
-    margin-bottom:15px;
+    color:#5c5c5c;
 
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
+    min-width:70px;
 }
 
-.total{
+.avatar{
 
-    font-size:24px;
+    width:70px;
+    height:70px;
 
-    color:#55ff55;
-
-    margin-bottom:20px;
-
-    font-weight:700;
-}
-
-.mode{
-
-    background:
-    rgba(255,255,255,0.03);
-
-    border:
-    1px solid rgba(255,255,255,0.05);
-
-    border-radius:18px;
-
-    padding:14px;
-
-    margin:12px 0;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-}
-
-.mode:hover{
-
-    background:
-    rgba(85,255,85,0.08);
-}
-
-.modeText{
-    text-align:left;
-}
-
-.deleteBtn{
+    border-radius:20px;
 
     background:
     linear-gradient(
     135deg,
-    #ff4444,
-    #cc0000
+    #00ff88,
+    #00cfff
     );
 
-    color:white;
+    display:flex;
 
-    padding:10px 14px;
+    justify-content:center;
 
-    border-radius:12px;
+    align-items:center;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:black;
 }
 
-.medal{
+.playerInfo h2{
 
-    font-size:34px;
+    font-size:28px;
+
+    font-weight:700;
 }
 
-.subtitle{
+.playerInfo p{
 
-    text-align:center;
+    margin-top:6px;
 
-    color:#8d8d8d;
+    color:#909090;
 
-    margin-bottom:25px;
-
-    font-size:18px;
+    font-size:15px;
 }
 
-/* PLAYER POPUP */
+/* RIGHT */
 
-.popup{
+.points{
+
+    text-align:right;
+}
+
+.points h3{
+
+    font-size:32px;
+
+    color:#00ff88;
+
+    font-weight:800;
+}
+
+.points p{
+
+    color:#888;
+
+    margin-top:4px;
+}
+
+/* MODAL */
+
+.modal{
 
     position:fixed;
 
     inset:0;
 
     background:
-    rgba(0,0,0,0.8);
+    rgba(0,0,0,0.75);
 
     display:none;
 
@@ -429,75 +398,116 @@ button:hover{
     z-index:999;
 }
 
-.popupContent{
+.modalContent{
 
     width:90%;
 
-    max-width:700px;
+    max-width:750px;
 
     background:
     linear-gradient(
     145deg,
-    #171717,
-    #0f0f0f
+    #181818,
+    #0d0d0d
     );
 
     border:
-    1px solid rgba(255,255,255,0.06);
+    1px solid rgba(255,255,255,0.05);
 
     border-radius:35px;
 
     padding:35px;
 
-    box-shadow:
-    0 20px 60px rgba(0,0,0,0.8);
-
-    animation:popupAnim 0.3s ease;
+    animation:popup 0.25s ease;
 }
 
-@keyframes popupAnim{
+@keyframes popup{
 
     from{
-        transform:scale(0.8);
         opacity:0;
+        transform:scale(0.9);
     }
 
     to{
-        transform:scale(1);
         opacity:1;
+        transform:scale(1);
     }
 }
 
-.popupName{
+.modalName{
 
     font-size:50px;
 
     font-weight:800;
 
-    margin-bottom:20px;
+    margin-bottom:25px;
+}
 
-    color:#55ff55;
+.stat{
+
+    background:#101010;
+
+    border:
+    1px solid rgba(255,255,255,0.04);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:14px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
 }
 
 .closeBtn{
 
-    margin-top:25px;
-
     width:100%;
+
+    margin-top:20px;
+
+    background:#00ff88;
+
+    color:black;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
 }
 
-@media(max-width:700px){
+/* MOBILE */
+
+@media(max-width:800px){
 
     .hero h1{
         font-size:60px;
     }
 
-    #leaderboard{
-        grid-template-columns:1fr;
+    .player{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
     }
 
-    .rank{
-        font-size:30px;
+    .points{
+        text-align:left;
+    }
+
+    .nav{
+        flex-direction:column;
+        gap:20px;
     }
 }
 
@@ -506,24 +516,20 @@ button:hover{
 </head>
 <body>
 
-<div class="container">
+<div class="bgGlow"></div>
 
-<div class="hero">
+<div class="nav">
 
-<h1>NL TIERS</h1>
-
-<p>Competitive Minecraft Leaderboard</p>
-
+<div class="logo">
+NL<span>TIERS</span>
 </div>
 
-<div class="glass">
-
-<div class="topBar">
+<div class="navRight">
 
 <input
 type="password"
 id="password"
-placeholder="Admin wachtwoord"
+placeholder="Admin code"
 >
 
 <button onclick="login()">
@@ -532,76 +538,17 @@ Login
 
 </div>
 
-<div id="adminBox"
-style="display:none;margin-top:25px;">
+</div>
 
-<div class="topBar">
+<div class="hero">
 
-<input
-type="text"
-id="playerName"
-placeholder="Spelernaam"
->
+<h1>Leaderboard</h1>
 
-<select id="gamemode">
-
-<option>Spear</option>
-<option>Mace</option>
-<option>Sword</option>
-<option>UHC</option>
-<option>Speed</option>
-<option>Axe</option>
-<option>Vanilla</option>
-<option>DIA SMP</option>
-<option>Cart</option>
-<option>Creeper</option>
-
-</select>
-
-<select id="tier">
-
-<option>HT1</option>
-<option>LT1</option>
-<option>HT2</option>
-<option>LT2</option>
-<option>HT3</option>
-<option>LT3</option>
-<option>HT4</option>
-<option>LT4</option>
-<option>HT5</option>
-<option>LT5</option>
-
-</select>
-
-<button onclick="addPlayer()">
-Toevoegen
-</button>
+<p>Best Minecraft Competitive Players</p>
 
 </div>
 
-</div>
-
-</div>
-
-<div class="subtitle">
-
-Zoek spelers of filter gamemodes
-
-</div>
-
-<div class="topBar" style="margin-bottom:30px;">
-
-<input
-type="text"
-id="searchInput"
-class="search"
-placeholder="Zoek speler..."
-onkeyup="loadPlayers()"
->
-
-</div>
-
-<div class="filterButtons">
+<div class="filters">
 
 <button onclick="filterMode('ALL')">ALL</button>
 <button onclick="filterMode('Spear')">SPEAR</button>
@@ -619,22 +566,20 @@ onkeyup="loadPlayers()"
 
 <div id="leaderboard"></div>
 
-</div>
+<!-- MODAL -->
 
-<!-- PLAYER POPUP -->
+<div class="modal" id="modal">
 
-<div class="popup" id="popup">
+<div class="modalContent">
 
-<div class="popupContent">
-
-<div class="popupName" id="popupName">
+<div class="modalName" id="modalName">
 Player
 </div>
 
-<div id="popupStats"></div>
+<div id="modalStats"></div>
 
-<button class="closeBtn" onclick="closePopup()">
-Sluiten
+<button class="closeBtn" onclick="closeModal()">
+Close
 </button>
 
 </div>
@@ -673,9 +618,9 @@ const tierRank = {
 
 let currentFilter = "ALL";
 
-let isAdmin = false;
-
 let allData = [];
+
+let isAdmin = false;
 
 function login(){
 
@@ -686,17 +631,11 @@ function login(){
 
         isAdmin = true;
 
-        document
-        .getElementById("adminBox")
-        .style.display = "block";
-
-        alert("Ingelogd!");
-
-        loadPlayers();
+        alert("Admin login success");
 
     }else{
 
-        alert("Verkeerd wachtwoord");
+        alert("Wrong password");
     }
 }
 
@@ -707,123 +646,63 @@ function filterMode(mode){
     loadPlayers();
 }
 
-async function addPlayer(){
+function getAvatar(name){
 
-    const player =
-    document.getElementById("playerName").value;
-
-    const gamemode =
-    document.getElementById("gamemode").value;
-
-    const tier =
-    document.getElementById("tier").value;
-
-    if(player === "") return;
-
-    await supabaseClient
-    .from("players")
-    .insert([
-        {
-            player,
-            gamemode,
-            tier
-        }
-    ]);
-
-    document
-    .getElementById("playerName")
-    .value = "";
-
-    loadPlayers();
-}
-
-async function deleteTier(id){
-
-    await supabaseClient
-    .from("players")
-    .delete()
-    .eq("id",id);
-
-    loadPlayers();
+    return name.charAt(0).toUpperCase();
 }
 
 function openPlayer(player){
 
-    const popup =
-    document.getElementById("popup");
+    const modal =
+    document.getElementById("modal");
 
-    const popupName =
-    document.getElementById("popupName");
+    const modalName =
+    document.getElementById("modalName");
 
-    const popupStats =
-    document.getElementById("popupStats");
+    const modalStats =
+    document.getElementById("modalStats");
 
-    popup.style.display = "flex";
+    modal.style.display = "flex";
 
-    popupName.innerHTML = player;
+    modalName.innerHTML = player;
 
     let playerData =
     allData.filter(x => x.player === player);
 
     let html = "";
 
-    let total = 0;
-
     playerData.forEach(entry => {
-
-        total += tierRank[entry.tier];
 
         html += `
 
-        <div class="mode">
+        <div class="stat">
 
-            <div class="modeText">
+            <div>
 
-                ${entry.gamemode}
-                •
-                ${entry.tier}
-                •
-                ${tierRank[entry.tier]} punten
+                <strong>${entry.gamemode}</strong>
+
+                <div style="margin-top:5px;color:#888;">
+                    ${entry.tier}
+                </div>
 
             </div>
 
-            ${
-                isAdmin
-                ?
-                `
-                <button
-                class="deleteBtn"
-                onclick="deleteTier(${entry.id})"
-                >
-                ❌
-                </button>
-                `
-                :
-                ""
-            }
+            <div style="color:#00ff88;font-weight:700;">
+                ${tierRank[entry.tier]} pts
+            </div>
 
         </div>
 
         `;
     });
 
-    popupStats.innerHTML = `
-
-    <div class="total">
-
-        ⭐ ${total} punten totaal
-
-    </div>
-
-    ${html}
-
-    `;
+    modalStats.innerHTML = html;
 }
 
-function closePopup(){
+function closeModal(){
 
     document
-    .getElementById("popup")
+    .getElementById("modal")
     .style.display = "none";
 }
 
@@ -848,12 +727,6 @@ async function loadPlayers(){
 
     board.innerHTML = "";
 
-    let search =
-    document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase();
-
     let groupedPlayers = {};
 
     data.forEach(entry => {
@@ -861,14 +734,6 @@ async function loadPlayers(){
         if(
             currentFilter !== "ALL" &&
             entry.gamemode !== currentFilter
-        ){
-            return;
-        }
-
-        if(
-            !entry.player
-            .toLowerCase()
-            .includes(search)
         ){
             return;
         }
@@ -896,12 +761,6 @@ async function loadPlayers(){
     sortedPlayers.forEach(
     ([player,info],index)=>{
 
-        let medal = "";
-
-        if(index === 0) medal = "🥇";
-        if(index === 1) medal = "🥈";
-        if(index === 2) medal = "🥉";
-
         board.innerHTML += `
 
         <div
@@ -909,19 +768,33 @@ async function loadPlayers(){
         onclick="openPlayer('${player}')"
         >
 
-            <div class="rank">
+            <div class="left">
 
-                <span class="medal">
-                ${medal}
-                </span>
+                <div class="rank">
+                    #${index+1}
+                </div>
 
-                ${player}
+                <div class="avatar">
+                    ${getAvatar(player)}
+                </div>
+
+                <div class="playerInfo">
+
+                    <h2>${player}</h2>
+
+                    <p>
+                        Competitive Player
+                    </p>
+
+                </div>
 
             </div>
 
-            <div class="total">
+            <div class="points">
 
-                ⭐ ${info.total} punten totaal
+                <h3>${info.total}</h3>
+
+                <p>Total Points</p>
 
             </div>
 
